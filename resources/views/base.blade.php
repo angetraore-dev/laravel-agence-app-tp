@@ -15,13 +15,14 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
    @endif
 </head>
-<body class="w-full bg-gray-200 h-screen"><!--h-dvh-->
+<body class="w-full p-2 box-border text-dark h-screen scheme-light-gray"><!-- bg-neutral-50sr-only container h-dvh-->
 
-@include('components.header')
-    <main class="md:overflow-y-auto">
-         @yield('content')
+    @include('components.header')
+    <main id="main" @class(['overflow-x-auto md:overflow-y-auto'])><!--md:overflow-y-auto-->
+        @yield('content')
     </main>
-@include('components.footer')
-
+    <section @class([''])><!--relative-->
+        @include('components.footer')
+    </section>
 </body>
 </html>

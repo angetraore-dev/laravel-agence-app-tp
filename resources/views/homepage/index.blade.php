@@ -1,61 +1,237 @@
 @extends('base')
 @section('title', 'Page d accueil')
 @section('content')
-    <h1 class="my-2 p-2 text-xl gap-6 text-center rounded-md hover:text-green-600 uppercase bg-[#FF2D20]/10">
-        Bienvenu sur l'app de gestion administrative de la Direction de l'Hydraulique Rural
-    </h1>
+    <div @class(['md:grid grid-cols-2 xl:grid-cols-3 md:items-center'])>
 
-
-    <div @class(['grid grid-cols-1 gap-4 xl:grid-cols-3 md:grid-cols-2 sm:[grid-cols-1 border-md border-dashed]  text-center text-2xl'])>
-        <div @class(['w-1/2'])>
-            <p class="">
+        <article @class(['grid grid-cols-1 p-4 text-center uppercase shadow-lg rounded-md m-1'])>
+            <h3 @class(['font-bold my-2'])>Titre 1</h3>
+            <p class="mb-2 text-xl md:text-lg md:text-start md:normal-case">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur consectetur ex excepturi laborum maxime nam nesciunt nihil nulla omnis quam quas quia similique sunt vel, voluptas? Accusamus asperiores ipsa magni.
                 <br>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consectetur cum est facere, in magni nulla quis sit veritatis vero. Architecto asperiores enim est facilis magnam nostrum nulla tempora voluptatibus.
 
             </p>
-
-            <button type="button" class='p-4 text-white rounded-md bg-red-500 xl:lg:md:sm:hover:bg-blue-500 text-red'>Click me !</button>
-        </div>
-        <div @class(['w-1/2'])>
-            <p class="font-bold text-red-500">
+            <button type="button" class='w-lg p-4 bg-[#093dd5b1] text-white uppercase md:normal-case shadow-md rounded-lg hover:border-b-4 border-red-500 hover:bg-indigo-400 hover:text-red-700 hover:font-bold'>Click me !</button>
+        </article>
+        <article @class(['grid grid-cols-1 bg-[#FAFAFA] p-4 text-center uppercase shadow-lg rounded-md m-1'])>
+            <h3 @class(['font-bold my-2'])>Titre 1</h3>
+            <p class="mb-2 text-xl md:text-lg md:text-start md:normal-case">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur consectetur ex excepturi laborum maxime nam nesciunt nihil nulla omnis quam quas quia similique sunt vel, voluptas? Accusamus asperiores ipsa magni.
                 <br>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consectetur cum est facere, in magni nulla quis sit veritatis vero. Architecto asperiores enim est facilis magnam nostrum nulla tempora voluptatibus.
 
             </p>
-
-            <button @class([''])>Click me !</button>
-        </div>
-        <div @class(['w-1/2'])>
-            <p class="font-bold text-red-500">
+            <button type="button" class='w-lg p-4 bg-[#093dd5b1] text-white uppercase md:normal-case shadow-md rounded-lg hover:border-b-4 border-red-500 hover:bg-indigo-400 hover:text-red-700 hover:font-bold'>Click me !</button>
+        </article>
+        <article @class(['grid grid-cols-1 bg-[#ECECEC] p-4 text-center uppercase shadow-lg rounded-md m-1'])>
+            <h3 @class(['font-bold my-2'])>Titre 1</h3>
+            <p class="mb-2 text-xl md:text-lg md:text-start md:normal-case">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur consectetur ex excepturi laborum maxime nam nesciunt nihil nulla omnis quam quas quia similique sunt vel, voluptas? Accusamus asperiores ipsa magni.
                 <br>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consectetur cum est facere, in magni nulla quis sit veritatis vero. Architecto asperiores enim est facilis magnam nostrum nulla tempora voluptatibus.
 
             </p>
-
-            <button @class([''])>Click me !</button>
-        </div>
-        <div @class(['w-1/2'])>
-            <p class="font-bold text-red-500">
+            <button type="button" class='w-lg p-4 bg-[#093dd5b1] text-white uppercase md:normal-case shadow-md rounded-lg hover:border-b-4 border-red-500 hover:bg-indigo-400 hover:text-red-700 hover:font-bold'>Click me !</button>
+        </article>
+        <article @class(['grid grid-cols-1 bg-[#ECECEC] p-4 text-center uppercase shadow-lg rounded-md m-1'])>
+            <h3 @class(['font-bold my-2'])>Titre 1</h3>
+            <p class="mb-2 text-xl md:text-lg md:text-start md:normal-case">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur consectetur ex excepturi laborum maxime nam nesciunt nihil nulla omnis quam quas quia similique sunt vel, voluptas? Accusamus asperiores ipsa magni.
                 <br>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consectetur cum est facere, in magni nulla quis sit veritatis vero. Architecto asperiores enim est facilis magnam nostrum nulla tempora voluptatibus.
 
             </p>
-
-            <button @class([''])>Click me !</button>
-        </div>
-        <div @class(['w-1/2'])>
-            <p class="font-bold text-red-500">
+            <button type="button" class='w-lg p-4 bg-[#093dd5b1] text-white uppercase md:normal-case shadow-md rounded-lg hover:border-b-4 border-red-500 hover:bg-indigo-400 hover:text-red-700 hover:font-bold'>Click me !</button>
+        </article>
+        <article @class(['grid grid-cols-1 bg-[#F5F5F5] p-4 text-center uppercase shadow-lg rounded-md m-1'])>
+            <h3 @class(['font-bold my-2'])>Titre 1</h3>
+            <p class="mb-2 text-xl md:text-lg md:text-start md:normal-case">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur consectetur ex excepturi laborum maxime nam nesciunt nihil nulla omnis quam quas quia similique sunt vel, voluptas? Accusamus asperiores ipsa magni.
                 <br>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consectetur cum est facere, in magni nulla quis sit veritatis vero. Architecto asperiores enim est facilis magnam nostrum nulla tempora voluptatibus.
 
             </p>
+            <button type="button" class='w-lg p-4 bg-[#093dd5b1] text-white uppercase md:normal-case shadow-md rounded-lg hover:border-b-4 border-red-500 hover:bg-indigo-400 hover:text-red-700 hover:font-bold'>Click me !</button>
+        </article>
+        <article @class(['grid grid-cols-1 bg-[#F5F5F5] p-4 text-center uppercase shadow-lg rounded-md m-1'])>
+            <h3 @class(['font-bold my-2'])>Titre 1</h3>
+            <p class="mb-2 text-xl md:text-lg md:text-start md:normal-case">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur consectetur ex excepturi laborum maxime nam nesciunt nihil nulla omnis quam quas quia similique sunt vel, voluptas? Accusamus asperiores ipsa magni.
+                <br>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consectetur cum est facere, in magni nulla quis sit veritatis vero. Architecto asperiores enim est facilis magnam nostrum nulla tempora voluptatibus.
 
-            <button @class([''])>Click me !</button>
-        </div>
+            </p>
+            <button type="button" class='w-lg p-4 bg-[#093dd5b1] text-white uppercase md:normal-case shadow-md rounded-lg hover:border-b-4 border-red-500 hover:bg-indigo-400 hover:text-red-700 hover:font-bold'>Click me !</button>
+        </article>
+        <article @class(['grid grid-cols-1 bg-[#F5F5F5] p-4 text-center uppercase shadow-lg rounded-md m-1'])>
+            <h3 @class(['font-bold my-2'])>Titre 1</h3>
+            <p class="mb-2 text-xl md:text-lg md:text-start md:normal-case">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur consectetur ex excepturi laborum maxime nam nesciunt nihil nulla omnis quam quas quia similique sunt vel, voluptas? Accusamus asperiores ipsa magni.
+                <br>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consectetur cum est facere, in magni nulla quis sit veritatis vero. Architecto asperiores enim est facilis magnam nostrum nulla tempora voluptatibus.
+
+            </p>
+            <button type="button" class='w-lg p-4 bg-[#093dd5b1] text-white uppercase md:normal-case shadow-md rounded-lg hover:border-b-4 border-red-500 hover:bg-indigo-400 hover:text-red-700 hover:font-bold'>Click me !</button>
+        </article>
+        <article @class(['grid grid-cols-1 bg-[#F5F5F5] p-4 text-center uppercase shadow-lg rounded-md m-1'])>
+            <h3 @class(['font-bold my-2'])>Titre 1</h3>
+            <p class="mb-2 text-xl md:text-lg md:text-start md:normal-case">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur consectetur ex excepturi laborum maxime nam nesciunt nihil nulla omnis quam quas quia similique sunt vel, voluptas? Accusamus asperiores ipsa magni.
+                <br>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consectetur cum est facere, in magni nulla quis sit veritatis vero. Architecto asperiores enim est facilis magnam nostrum nulla tempora voluptatibus.
+
+            </p>
+            <button type="button" class='w-lg p-4 bg-[#093dd5b1] text-white uppercase md:normal-case shadow-md rounded-lg hover:border-b-4 border-red-500 hover:bg-indigo-400 hover:text-red-700 hover:font-bold'>Click me !</button>
+        </article>
+        <article @class(['grid grid-cols-1 p-4 text-center uppercase shadow-lg rounded-md m-1'])>
+            <h3 @class(['font-bold my-2'])>Titre 1</h3>
+            <p class="mb-2 text-xl md:text-lg md:text-start md:normal-case">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur consectetur ex excepturi laborum maxime nam nesciunt nihil nulla omnis quam quas quia similique sunt vel, voluptas? Accusamus asperiores ipsa magni.
+                <br>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consectetur cum est facere, in magni nulla quis sit veritatis vero. Architecto asperiores enim est facilis magnam nostrum nulla tempora voluptatibus.
+
+            </p>
+            <button type="button" class='w-lg p-4 bg-[#093dd5b1] text-white uppercase md:normal-case shadow-md rounded-lg hover:border-b-4 border-red-500 hover:bg-indigo-400 hover:text-red-700 hover:font-bold'>Click me !</button>
+        </article>
+        <article @class(['grid grid-cols-1 p-4 text-center uppercase shadow-lg rounded-md m-1'])>
+            <h3 @class(['font-bold my-2'])>Titre 1</h3>
+            <p class="mb-2 text-xl md:text-lg md:text-start md:normal-case">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur consectetur ex excepturi laborum maxime nam nesciunt nihil nulla omnis quam quas quia similique sunt vel, voluptas? Accusamus asperiores ipsa magni.
+                <br>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consectetur cum est facere, in magni nulla quis sit veritatis vero. Architecto asperiores enim est facilis magnam nostrum nulla tempora voluptatibus.
+
+            </p>
+            <button type="button" class='w-lg p-4 bg-[#093dd5b1] text-white uppercase md:normal-case shadow-md rounded-lg hover:border-b-4 border-red-500 hover:bg-indigo-400 hover:text-red-700 hover:font-bold'>Click me !</button>
+        </article>
+        <article @class(['grid grid-cols-1 p-4 text-center uppercase shadow-lg rounded-md m-1'])>
+            <h3 @class(['font-bold my-2'])>Titre 1</h3>
+            <p class="mb-2 text-xl md:text-lg md:text-start md:normal-case">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur consectetur ex excepturi laborum maxime nam nesciunt nihil nulla omnis quam quas quia similique sunt vel, voluptas? Accusamus asperiores ipsa magni.
+                <br>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consectetur cum est facere, in magni nulla quis sit veritatis vero. Architecto asperiores enim est facilis magnam nostrum nulla tempora voluptatibus.
+
+            </p>
+            <button type="button" class='w-lg p-4 bg-[#093dd5b1] text-white uppercase md:normal-case shadow-md rounded-lg hover:border-b-4 border-red-500 hover:bg-indigo-400 hover:text-red-700 hover:font-bold'>Click me !</button>
+        </article>
+        <article @class(['grid grid-cols-1 p-4 text-center uppercase shadow-lg rounded-md m-1'])>
+            <h3 @class(['font-bold my-2'])>Titre 1</h3>
+            <p class="mb-2 text-xl md:text-lg md:text-start md:normal-case">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur consectetur ex excepturi laborum maxime nam nesciunt nihil nulla omnis quam quas quia similique sunt vel, voluptas? Accusamus asperiores ipsa magni.
+                <br>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consectetur cum est facere, in magni nulla quis sit veritatis vero. Architecto asperiores enim est facilis magnam nostrum nulla tempora voluptatibus.
+
+            </p>
+            <button type="button" class='w-lg p-4 bg-[#093dd5b1] text-white uppercase md:normal-case shadow-md rounded-lg hover:border-b-4 border-red-500 hover:bg-indigo-400 hover:text-red-700 hover:font-bold'>Click me !</button>
+        </article>
+        <article @class(['grid grid-cols-1 p-4 text-center uppercase shadow-lg rounded-md m-1'])>
+            <h3 @class(['font-bold my-2'])>Titre 1</h3>
+            <p class="mb-2 text-xl md:text-lg md:text-start md:normal-case">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur consectetur ex excepturi laborum maxime nam nesciunt nihil nulla omnis quam quas quia similique sunt vel, voluptas? Accusamus asperiores ipsa magni.
+                <br>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consectetur cum est facere, in magni nulla quis sit veritatis vero. Architecto asperiores enim est facilis magnam nostrum nulla tempora voluptatibus.
+
+            </p>
+            <button type="button" class='w-lg p-4 bg-[#093dd5b1] text-white uppercase md:normal-case shadow-md rounded-lg hover:border-b-4 border-red-500 hover:bg-indigo-400 hover:text-red-700 hover:font-bold'>Click me !</button>
+        </article>
+        <article @class(['grid grid-cols-1 p-4 text-center uppercase shadow-lg rounded-md m-1'])>
+            <h3 @class(['font-bold my-2'])>Titre 1</h3>
+            <p class="mb-2 text-xl md:text-lg md:text-start md:normal-case">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur consectetur ex excepturi laborum maxime nam nesciunt nihil nulla omnis quam quas quia similique sunt vel, voluptas? Accusamus asperiores ipsa magni.
+                <br>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consectetur cum est facere, in magni nulla quis sit veritatis vero. Architecto asperiores enim est facilis magnam nostrum nulla tempora voluptatibus.
+
+            </p>
+            <button type="button" class='w-lg p-4 bg-[#093dd5b1] text-white uppercase md:normal-case shadow-md rounded-lg hover:border-b-4 border-red-500 hover:bg-indigo-400 hover:text-red-700 hover:font-bold'>Click me !</button>
+        </article>
+        <article @class(['grid grid-cols-1 p-4 text-center uppercase shadow-lg rounded-md m-1'])>
+            <h3 @class(['font-bold my-2'])>Titre 1</h3>
+            <p class="mb-2 text-xl md:text-lg md:text-start md:normal-case">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur consectetur ex excepturi laborum maxime nam nesciunt nihil nulla omnis quam quas quia similique sunt vel, voluptas? Accusamus asperiores ipsa magni.
+                <br>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consectetur cum est facere, in magni nulla quis sit veritatis vero. Architecto asperiores enim est facilis magnam nostrum nulla tempora voluptatibus.
+
+            </p>
+            <button type="button" class='w-lg p-4 bg-[#093dd5b1] text-white uppercase md:normal-case shadow-md rounded-lg hover:border-b-4 border-red-500 hover:bg-indigo-400 hover:text-red-700 hover:font-bold'>Click me !</button>
+        </article>
+        <article @class(['grid grid-cols-1 p-4 text-center uppercase shadow-lg rounded-md m-1'])>
+            <h3 @class(['font-bold my-2'])>Titre 1</h3>
+            <p class="mb-2 text-xl md:text-lg md:text-start md:normal-case">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur consectetur ex excepturi laborum maxime nam nesciunt nihil nulla omnis quam quas quia similique sunt vel, voluptas? Accusamus asperiores ipsa magni.
+                <br>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consectetur cum est facere, in magni nulla quis sit veritatis vero. Architecto asperiores enim est facilis magnam nostrum nulla tempora voluptatibus.
+
+            </p>
+            <button type="button" class='w-lg p-4 bg-[#093dd5b1] text-white uppercase md:normal-case shadow-md rounded-lg hover:border-b-4 border-red-500 hover:bg-indigo-400 hover:text-red-700 hover:font-bold'>Click me !</button>
+        </article>
+        <article @class(['grid grid-cols-1 p-4 text-center uppercase shadow-lg rounded-md m-1'])>
+            <h3 @class(['font-bold my-2'])>Titre 1</h3>
+            <p class="mb-2 text-xl md:text-lg md:text-start md:normal-case">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur consectetur ex excepturi laborum maxime nam nesciunt nihil nulla omnis quam quas quia similique sunt vel, voluptas? Accusamus asperiores ipsa magni.
+                <br>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consectetur cum est facere, in magni nulla quis sit veritatis vero. Architecto asperiores enim est facilis magnam nostrum nulla tempora voluptatibus.
+
+            </p>
+            <button type="button" class='w-lg p-4 bg-[#093dd5b1] text-white uppercase md:normal-case shadow-md rounded-lg hover:border-b-4 border-red-500 hover:bg-indigo-400 hover:text-red-700 hover:font-bold'>Click me !</button>
+        </article>
+        <article @class(['grid grid-cols-1 p-4 text-center uppercase shadow-lg rounded-md m-1'])>
+            <h3 @class(['font-bold my-2'])>Titre 1</h3>
+            <p class="mb-2 text-xl md:text-lg md:text-start md:normal-case">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur consectetur ex excepturi laborum maxime nam nesciunt nihil nulla omnis quam quas quia similique sunt vel, voluptas? Accusamus asperiores ipsa magni.
+                <br>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consectetur cum est facere, in magni nulla quis sit veritatis vero. Architecto asperiores enim est facilis magnam nostrum nulla tempora voluptatibus.
+
+            </p>
+            <button type="button" class='w-lg p-4 bg-[#093dd5b1] text-white uppercase md:normal-case shadow-md rounded-lg hover:border-b-4 border-red-500 hover:bg-indigo-400 hover:text-red-700 hover:font-bold'>Click me !</button>
+        </article>
+        <article @class(['grid grid-cols-1 p-4 text-center uppercase shadow-lg rounded-md m-1'])>
+            <h3 @class(['font-bold my-2'])>Titre 1</h3>
+            <p class="mb-2 text-xl md:text-lg md:text-start md:normal-case">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur consectetur ex excepturi laborum maxime nam nesciunt nihil nulla omnis quam quas quia similique sunt vel, voluptas? Accusamus asperiores ipsa magni.
+                <br>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consectetur cum est facere, in magni nulla quis sit veritatis vero. Architecto asperiores enim est facilis magnam nostrum nulla tempora voluptatibus.
+
+            </p>
+            <button type="button" class='w-lg p-4 bg-[#093dd5b1] text-white uppercase md:normal-case shadow-md rounded-lg hover:border-b-4 border-red-500 hover:bg-indigo-400 hover:text-red-700 hover:font-bold'>Click me !</button>
+        </article>
+        <article @class(['grid grid-cols-1 p-4 text-center uppercase shadow-lg rounded-md m-1'])>
+            <h3 @class(['font-bold my-2'])>Titre 1</h3>
+            <p class="mb-2 text-xl md:text-lg md:text-start md:normal-case">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur consectetur ex excepturi laborum maxime nam nesciunt nihil nulla omnis quam quas quia similique sunt vel, voluptas? Accusamus asperiores ipsa magni.
+                <br>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consectetur cum est facere, in magni nulla quis sit veritatis vero. Architecto asperiores enim est facilis magnam nostrum nulla tempora voluptatibus.
+
+            </p>
+            <button type="button" class='w-lg p-4 bg-[#093dd5b1] text-white uppercase md:normal-case shadow-md rounded-lg hover:border-b-4 border-red-500 hover:bg-indigo-400 hover:text-red-700 hover:font-bold'>Click me !</button>
+        </article>
+        <article @class(['grid grid-cols-1 p-4 text-center uppercase shadow-lg rounded-md m-1'])>
+            <h3 @class(['font-bold my-2'])>Titre 1</h3>
+            <p class="mb-2 text-xl md:text-lg md:text-start md:normal-case">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur consectetur ex excepturi laborum maxime nam nesciunt nihil nulla omnis quam quas quia similique sunt vel, voluptas? Accusamus asperiores ipsa magni.
+                <br>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consectetur cum est facere, in magni nulla quis sit veritatis vero. Architecto asperiores enim est facilis magnam nostrum nulla tempora voluptatibus.
+
+            </p>
+            <button type="button" class='w-lg p-4 bg-[#093dd5b1] text-white uppercase md:normal-case shadow-md rounded-lg hover:border-b-4 border-red-500 hover:bg-indigo-400 hover:text-red-700 hover:font-bold'>Click me !</button>
+        </article>
+        <article @class(['grid grid-cols-1 p-4 text-center uppercase shadow-lg rounded-md m-1'])>
+            <h3 @class(['font-bold my-2'])>Titre 1</h3>
+            <p class="mb-2 text-xl md:text-lg md:text-start md:normal-case">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur consectetur ex excepturi laborum maxime nam nesciunt nihil nulla omnis quam quas quia similique sunt vel, voluptas? Accusamus asperiores ipsa magni.
+                <br>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consectetur cum est facere, in magni nulla quis sit veritatis vero. Architecto asperiores enim est facilis magnam nostrum nulla tempora voluptatibus.
+
+            </p>
+            <button type="button" class='w-lg p-4 bg-[#093dd5b1] text-white uppercase md:normal-case shadow-md rounded-lg hover:border-b-4 border-red-500 hover:bg-indigo-400 hover:text-red-700 hover:font-bold'>Click me !</button>
+        </article>
+        <article @class(['grid grid-cols-1 p-4 text-center uppercase shadow-lg rounded-md m-1'])>
+            <h3 @class(['font-bold my-2'])>Titre 1</h3>
+            <p class="mb-2 text-xl md:text-lg md:text-start md:normal-case">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur consectetur ex excepturi laborum maxime nam nesciunt nihil nulla omnis quam quas quia similique sunt vel, voluptas? Accusamus asperiores ipsa magni.
+                <br>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consectetur cum est facere, in magni nulla quis sit veritatis vero. Architecto asperiores enim est facilis magnam nostrum nulla tempora voluptatibus.
+
+            </p>
+            <button type="button" class='w-lg p-4 bg-[#093dd5b1] text-white uppercase md:normal-case shadow-md rounded-lg hover:border-b-4 border-red-500 hover:bg-indigo-400 hover:text-red-700 hover:font-bold'>Click me !</button>
+        </article>
     </div>
 @endsection
