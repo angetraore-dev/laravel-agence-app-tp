@@ -13,6 +13,7 @@
     <!-- Styles -->
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @stack('scripts')
    @endif
 </head>
 <body class="w-full p-2 box-border text-dark h-screen scheme-light-gray"><!-- bg-neutral-50sr-only container h-dvh-->

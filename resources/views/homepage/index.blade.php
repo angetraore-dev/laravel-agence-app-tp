@@ -235,3 +235,6 @@
         </article>
     </div>
 @endsection
+@push('scripts')
+    @vite('resources/js/views/partials/homepage.js')
+@endpush
