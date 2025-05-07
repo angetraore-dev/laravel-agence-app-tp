@@ -21,22 +21,24 @@
         </button>
     </div>
 
-    <!-- Menu items and Search Bar -->
-    <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-        <div id="navItems" class="hidden md:block text-sm lg:flex-grow ">
-            <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
-                Docs
+    <!-- Menu items and Search Bar lg:flex lg:items-center lg:w-auto-->
+    <div class="w-full block flex-grow md:flex md:items-center md:w-auto">
+        <div id="navItems" class="hidden md:block text-sm md:flex-grow">
+            <a href="{{ route('homepage.index') }}" class="block mt-4 md:inline-block md:mt-0 text-teal-200 hover:text-white mr-4">
+                Accueil
             </a>
-            <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+            <a href="#responsive-header" class="block mt-4 md:inline-block md:mt-0 text-teal-200 hover:text-white mr-4">
                 Examples
             </a>
-            <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white">
-                Blog
-            </a>
+            @guest
+                <a @ href="{{route('security.login')}}" class="block mt-4 md:inline-block md:mt-0 text-teal-200 hover:text-white">
+                    Se connecter
+                </a>
+            @endguest
+
         </div>
         <div @class(['mt-4 lg:mt-0'])>
             <input type="text" @class(['w-full rounded-md shadow-lg focus:border-indigo-600 focus:outline-hidden p-2']) placeholder="recherche" id="search" name="search">
-
         </div>
     </div>
 </nav>

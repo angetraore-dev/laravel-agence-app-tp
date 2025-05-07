@@ -18,27 +18,32 @@ export default {
                 xl: "1280px",
                 "2xl": "1536px"
             },
-            colors: {
-                blue: '#1fb6ff',
-                purple: '#7e5bef',
-                pink: '#ff49db',
-                orange: '#ff7849',
-                green: '#13ce66',
-                yellow: '#ffc82c',
-                'gray-dark': '#273444',
-                'gray-light': '#d3dce6',
-                'light-gray': '#f5f5f5',
-                gray: '#8492a6',
-                transparent: 'transparent',
-                black: '#000',
-                white: '#fff',
-            },
             fontFamily: {
                 bodyFont: ["Poppins", "sans-serif"],
-                titleFont: ["Satisfy", "cursive"],
-                textFont: ['Graphik', 'sans-serif']
+                textFont: ['Roboto', 'sans-serif'],
+                titleFont: ["Satisfy", "sans-serif"],
             },
+            fontWeight:{
+                titleFont: ["bold"]
+            }
         },
     },
     plugins: [],
 };
+/**
+ *  colors: {
+ *             blue: '#1fb6ff',
+ *             purple: '#7e5bef',
+ *             pink: '#ff49db',
+ *             orange: '#ff7849',
+ *             green: '#13ce66',
+ *             yellow: '#ffc82c',
+ *             'gray-dark': '#273444',
+ *             'gray-light': '#d3dce6',
+ *             'light-gray': '#f6f6f6',
+ *             gray: '#8492a6',
+ *             transparent: 'transparent',
+ *             black: '#000',
+ *             white: '#fff',
+ *         },
+ */

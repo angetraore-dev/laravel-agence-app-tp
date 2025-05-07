@@ -1,5 +1,5 @@
 import '../../bootstrap.js'
-//For Admin index
+
 document.addEventListener('DOMContentLoaded', () => {
-    console.info("admin js's file is loaded")
+    console.info("menu js is successfully loaded")
 })
