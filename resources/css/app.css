@@ -1,0 +1,128 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+
+    p{
+        @apply font-textFont leading-relaxed;
+    }
+    h1{
+        @apply text-2xl;
+        font-family: Roboto sans-serif;
+    }
+    h3{
+        @apply font-titleFont text-xl;
+    }
+
+}
+/* Button Navigation Cards list */
+@layer components {
+/*        @apply p-4 bg-teal-500 shadow-lg text-white rounded-md hover:bg-emerald-500 focus:ring-gray-900/5 focus:opacity-50;
+*/
+    /**Buton**/
+    .btn{
+        @apply px-6 py-4 leading-5 font-medium text-center rounded;
+    }
+    .btn-sm{
+        @apply text-sm px-4 py-3;
+    }
+    .btn-primary {
+        @apply px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg focus:ring-blue-500 focus:ring-opacity-50;
+    }
+    .btn-light{
+        @apply border-gray-200 ;
+    }
+    .btn-dark{
+        @apply bg-black text-white focus:ring-2 focus:ring-black;
+    }
+
+    /**Form**/
+    .form{
+        @apply p-4;
+    }
+    .form-row{
+        @apply p-4 border-2 bg-emerald-500/5;
+    }
+    .form-group{
+        @apply flex flex-wrap sm:grid grid-cols-2 sm:justify-between gap-4;
+    }
+    .form-control{
+        /** hover:border-2 border-emerald-500/25 **/
+        @apply p-4 w-auto rounded-md border-2 focus:ring-gray-900/5;
+    }
+    .label{
+        @apply ml-2 mb-2 font-medium;
+    }
+
+    .forPlace{
+        width: 25%;
+    }
+    .forDivPlace{
+        margin-left: 25%;
+    }
+    .forDivPlacePx{
+        margin-left: 250px;
+    }
+    .sidenav {
+        /**
+
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #111;
+        overflow-x: hidden;
+        padding-top: 60px;
+         */
+
+        transition: 0.5s;
+
+    }
+
+    /**
+    .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+    }
+     */
+    .sidenav a:hover {
+        color: #f1f1f1;
+    }
+
+    .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+
+    @media screen and (max-height: 450px) {
+        .sidenav {padding-top: 15px;}
+        .sidenav a {font-size: 18px;}
+    }
+}
+@layer utilities {}
+
+/**
+@theme{
+    --font-display: "Satoshi", "sans-serif";
+    --breakpoint-3xl: 120rem;
+    --color-avocado-100: oklch(0.99 0 0);
+    --color-avocado-200: oklch(0.98 0.04 113.22);
+    --color-avocado-300: oklch(0.94 0.11 115.03);
+    --color-avocado-400: oklch(0.92 0.19 114.08);
+    --color-avocado-500: oklch(0.84 0.18 117.33);
+    --color-avocado-600: oklch(0.53 0.12 118.34);
+    --ease-fluid: cubic-bezier(0.3, 0, 0, 1);
+    --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
+}
+ */

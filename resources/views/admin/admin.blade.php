@@ -6,15 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title') |Administration</title>
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
-        @vite(['resources/css/app.css', 'resources/js/views/admin/admin-partials.js'])
+        @vite(['resources/css/app.css', 'resources/js/views/admin/admin-partials.js', 'resources/js/views/admin/index.js'])
         @stack('scripts')
     @endif
 </head>
-<body @class(['flex min-h-full flex-col'])>
-
+<body @class([''])>
+<div @class(['flex min-h-full flex-col'])>
     <header @class(['grid grid-cols-2 gap-6 justify-between bg-[#ff0001] p-4 border-2'])>
         <h1 @class(['text-start text-2xl medium italic'])>Page d'administration</h1>
-        <!--<h1 @class(['text-end text-2xl semibold normal'])>Service</h1>-->
         <span id="open" @class(['text-end text-2xl semibold normal md:invisible']) style="cursor:pointer">&#9776; menu</span>
 
     </header>
@@ -24,6 +23,32 @@
     </main>
 
     <footer></footer>
+</div>
+
 
 </body>
 </html>
+<!--
+<div class(['grid grid-flow-col grid-rows-4 gap-4 h-dvh'])>
+    <div class(['row-span-3 border-2 absolute'])>
+        include('admin.inc.menu')
+    </div>
+    <div class(['col-span-2 border-2 border-yellow-500'])>
+        <header class(['grid grid-cols-2 gap-6 justify-between bg-indigo-400 p-4 border-2'])>
+            <h1 class(['text-start text-2xl medium italic'])>Page d'administration</h1>
+            <span id="open" class(['text-end text-2xl semibold normal md:invisible']) style="cursor:pointer">&#9776; menu</span>
+        </header>
+    </div>
+    <div class(['col-span-2 row-span-2'])>
+        <h1>The content</h1>
+    </div>
+
+    <footer class(['col-span-2 border-2 border-green-500'])>
+        <ul class(['text-center mx-auto'])>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+    </footer>
+</div>
+-->
