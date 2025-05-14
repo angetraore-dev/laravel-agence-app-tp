@@ -21,36 +21,26 @@
 @layer components {
 /*        @apply p-4 bg-teal-500 shadow-lg text-white rounded-md hover:bg-emerald-500 focus:ring-gray-900/5 focus:opacity-50;
 */
-    /**Buton**/
-    .btn{
-        @apply px-6 py-4 leading-5 font-medium text-center rounded;
-    }
-    .btn-sm{
-        @apply text-sm px-4 py-3;
-    }
-    .btn-primary {
-        @apply px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg focus:ring-blue-500 focus:ring-opacity-50;
-    }
-    .btn-light{
-        @apply border-gray-200 ;
-    }
-    .btn-dark{
-        @apply bg-black text-white focus:ring-2 focus:ring-black;
-    }
+
 
     /**Form**/
     .form{
-        @apply p-4;
+        @apply p-4 border-2;
     }
     .form-row{
-        @apply p-4 border-2 bg-emerald-500/5;
+        @apply grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:mx-auto border-2 border-indigo-500/50;
     }
     .form-group{
-        @apply flex flex-wrap sm:grid grid-cols-2 sm:justify-between gap-4;
+        /**
+            @apply flex flex-wrap sm:grid grid-cols-2 sm:justify-between gap-4;
+            @apply flex flex-col p-2 mb-4 sm:flex-1 border-2 border-orange-500/50;
+            mb-4
+        **/
+        @apply flex flex-col md:grid md:grid-cols-1 w-full;
     }
     .form-control{
-        /** hover:border-2 border-emerald-500/25 **/
-        @apply p-4 w-auto rounded-md border-2 focus:ring-gray-900/5;
+        /** hover:border-2 border-emerald-500/25 focus:ring-gray-900/5 **/
+        @apply flex-1 w-auto rounded-md border-2 p-4 mb-4;
     }
     .label{
         @apply ml-2 mb-2 font-medium;
@@ -65,34 +55,7 @@
     .forDivPlacePx{
         margin-left: 250px;
     }
-    .sidenav {
-        /**
 
-        height: 100%;
-        width: 0;
-        position: fixed;
-        z-index: 1;
-        top: 0;
-        left: 0;
-        background-color: #111;
-        overflow-x: hidden;
-        padding-top: 60px;
-         */
-
-        transition: 0.5s;
-
-    }
-
-    /**
-    .sidenav a {
-        padding: 8px 8px 8px 32px;
-        text-decoration: none;
-        font-size: 25px;
-        color: #818181;
-        display: block;
-        transition: 0.3s;
-    }
-     */
     .sidenav a:hover {
         color: #f1f1f1;
     }
@@ -110,9 +73,65 @@
         .sidenav a {font-size: 18px;}
     }
 }
-@layer utilities {}
+@layer utilities {
+    .border-danger{
+        border: 2px solid red;
+    }
+    .border-info{
+        border: #9ca3af 2px solid;
+    }
+    .success{
+        color: green;
+    }
+    .text-white{
+        color: white;
+    }
+    .text-danger{
+        color: red;
+    }
+    .text-dark{
+        color: black;
+    }
+    /**
+        *Btn px-6 py-4 | py-2 px-4
+     */
+    .btn{
+        @apply px-6 py-4 leading-5 font-bold text-center uppercase rounded;
+    }
+
+    .btn-primary{
+        @apply bg-blue-500 hover:bg-blue-700 text-white;
+    }
+
+    .btn-success{
+        @apply bg-green-500 hover:bg-green-700 text-white;
+    }
+
+    .btn-danger{
+        @apply bg-red-500 hover:bg-red-700 text-white;
+    }
+
+    .btn-secondary{
+        @apply bg-gray-200 hover:bg-gray-500 text-white focus:opacity-50;
+    }
+
+    .btn-dark{
+        @apply bg-black text-white focus:opacity-50;
+    }
+
+}
 
 /**
+.btn-sm{
+        @apply text-sm px-4 py-3;
+    }
+    .btn-primary {
+        @apply px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-lg focus:ring-blue-500 focus:ring-opacity-50;
+    }
+    .btn-light{
+        @apply border-gray-200 ;
+    }
+
 @theme{
     --font-display: "Satoshi", "sans-serif";
     --breakpoint-3xl: 120rem;
@@ -124,5 +143,26 @@
     --color-avocado-600: oklch(0.53 0.12 118.34);
     --ease-fluid: cubic-bezier(0.3, 0, 0, 1);
     --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
+}
+
+.sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #111;
+        overflow-x: hidden;
+        padding-top: 60px;
+        transition: 0.5s;
+}
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
 }
  */

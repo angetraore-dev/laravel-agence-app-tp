@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html @class(['']) lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,13 +16,15 @@
         @stack('scripts')
    @endif
 </head>
-<body class="w-full p-2 box-border text-dark h-screen scheme-light-gray"><!-- bg-neutral-50sr-only container h-dvh-->
+<body class="w-full h-dvh box-border bg-[#f1f1f1] text-dark"><!-- scheme-light-gray bg-neutral-50sr-only container h-dvh-->
 
-    @include('components.header')
-    <main id="main" @class(['overflow-x-auto md:overflow-y-auto'])><!--md:overflow-y-auto-->
+    <section @class([''])>
+        @include('components.header')
+    </section>
+    <main @class(['overflow-auto'])><!-- id="main" md:overflow-y-auto-->
         @yield('content')
     </main>
-    <section @class([''])><!--relative-->
+    <section @class(['bottom-0'])><!--relative-->
         @include('components.footer')
     </section>
 </body>

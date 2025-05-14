@@ -49,11 +49,10 @@
                         <td @class(['border border-right-2'])>{{ number_format($property->price, thousands_separator: ' ') }}</td>
                         <td @class(['grid grid-cols-2 justify-between'])>
                             <a href="{{route('admin.property.edit', $property) }}" @class(['text-sm font-small hover:text-blue-400'])>edit</a>
-                            <form @class(['inline block']) action="{{route('admin.property.destroy', $property) }}" method="post">
+                            <form @class(['']) action="{{route('admin.property.destroy', $property) }}" method="post">
                                 @csrf
                                 @method( $property->exists ? 'DELETE' : 'POST')
                                 <button type="submit" @class(['btn btn-dark p-1 text-sm font-small hover:text-red-700'])>delete</button>
-
                             </form>
                         </td>
                     </tr>
