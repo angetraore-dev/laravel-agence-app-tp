@@ -33,12 +33,9 @@
                     @include('components.form-group', ['label' => 'Adresse', 'name' => 'adress', 'id' => 'adress', 'value' => $property->adress] )
                     @include('components.form-group', ['label' => 'Code postal', 'name' => 'postal_code', 'id' => 'postal_code', 'value' => $property->postal_code] )
                 </div>
-
-                {{-- Sold item
-                    <div @class(['form-group sm:grid-cols-1 md:justify-between md:gap-4 lg:w-md'])>
-                        @include('components.field', ['type' => 'textarea', 'label' => 'Description', 'name' => 'description', 'id' => 'description', 'value' => $property->description] )
-                    </div>
-                --}}
+                <div @class([''])>
+                    @include('components.checkbox', ['name' => 'sold', 'label' => 'vendu', 'class' => 'w-auto border-2 border-dark', 'value' => $property->sold ] ){{--'label' => 'vendu ?', --}}
+                </div>
 
                 <div @class(['flex flex-col md:items-end gap-6'])>
                     <button @class(['w-auto text-center btn btn-secondary md:w-1/2'])>

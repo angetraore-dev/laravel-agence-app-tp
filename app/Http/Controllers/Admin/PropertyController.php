@@ -41,8 +41,8 @@ class PropertyController extends Controller
             'price' => 0,
             'city' => 'Abidjan',
             'adress' => '103 quartier millionnaire, Yopougon Abidjan',
-            'postal_code' => '93BPV93 ABJ01',
-            'sold' => false,
+            'postal_code' => '93BPV93 ABJ01'
+            //'sold' => false,
         ]);
         return view('admin.properties._form', ['property' => $property]);//create
     }
@@ -53,8 +53,8 @@ class PropertyController extends Controller
     public function store(PropertyRequest $propertyRequest)
     {
         Property::create($propertyRequest->validated());
-        return redirect()->route('admin.property.index')->with('success', 'Bien immobilier enregistré');
-        //
+        return to_route('admin.property.index')->with('success', 'Bien immobilier enregistré');
+        //return redirect()->route('admin.property.index')->with('success', 'Bien immobilier enregistré');
     }
 
     /**

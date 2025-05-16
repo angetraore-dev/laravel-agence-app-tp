@@ -1,12 +1,10 @@
 @php
-$value ??= null;
-$name ??= null;
-$label ??= $name;
-$type ??= 'text';
-$class ??=null;
+    $value ??= null;
+    $name ??= null;
+    $label ??= $name;
+    $type ??= 'text';
+    $class ??=null;
 @endphp
-<!-- form-group est en grid: flex flex-col w-full md:grid grid-cols-1 mb-4 -->
-
 <div @class(['form-group', $class])>
 
     <label class="label" for="{{ $name }}">{{ $label }}</label>

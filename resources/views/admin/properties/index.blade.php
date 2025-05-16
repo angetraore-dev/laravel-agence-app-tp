@@ -8,7 +8,7 @@
             @include('admin.inc.menu')
         </div>
 
-        <div id="content" @class(['grow border-2 border-indigo-500 md:ms-8'])><!--md:forDivPlacePx -->
+        <div id="content" @class(['grow md:ms-8'])><!-- border-2 border-indigo-500 md:forDivPlacePx -->
             <div @class(['grid grid-cols-2 bg-light-gray uppercase p-2 mb-4'])>
                 <div @class([''])>
                     <h3 class="text-lg md:text-2xl text-start">@yield('title')</h3>
@@ -31,6 +31,8 @@
                     <th @class(['border border-right-2'])>Adresse</th>
                     <th @class(['border border-right-2'])>Description</th>
                     <th @class(['border border-right-2'])>Prix</th>
+                    <th @class(['border border-right-2'])>Soldé</th>
+
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -47,12 +49,24 @@
                         <td @class(['border border-right-2'])>{{ $property->adress }}</td>
                         <td @class(['border border-right-2'])>{{ $property->description }}</td>
                         <td @class(['border border-right-2'])>{{ number_format($property->price, thousands_separator: ' ') }}</td>
-                        <td @class(['grid grid-cols-2 justify-between'])>
-                            <a href="{{route('admin.property.edit', $property) }}" @class(['text-sm font-small hover:text-blue-400'])>edit</a>
-                            <form @class(['']) action="{{route('admin.property.destroy', $property) }}" method="post">
+                        <td @class(['border border-right-2'])>
+                            @if($property->sold)
+                              <p class="text-success">
+                                  {{__('vendu')}}
+                              </p>
+                            @else
+                              <p class="text-gray">
+                                  {{__('non')}}
+                              </p>
+                            @endif
+                        </td>
+
+                        <td @class(['flex items-center p-6 gap-4'])>
+                            <a @class(['btn btn-primary w-auto text-sm font-small hover:btn-outline hover:text-blue-700 hover:border-blue-700']) href="{{route('admin.property.edit', $property) }}">edit</a>
+                            <form @class(['w-auto flex-1']) action="{{route('admin.property.destroy', $property) }}" method="post">
                                 @csrf
                                 @method( $property->exists ? 'DELETE' : 'POST')
-                                <button type="submit" @class(['btn btn-dark p-1 text-sm font-small hover:text-red-700'])>delete</button>
+                                <button type="submit" @class(['btn btn-danger text-sm hover:btn-outline hover:text-red-700 hover:border-red-700'])>delete</button>
                             </form>
                         </td>
                     </tr>
@@ -60,11 +74,7 @@
                 </tbody>
 
             </table>
-            <div>
-
-                {{ $properties->links() }}
-
-            </div>
+            <div> {{ $properties->links() }} </div>
         </div>
     </div>
 

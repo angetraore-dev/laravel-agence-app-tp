@@ -23,16 +23,16 @@ class PropertyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', 'min:8'],
-            'description' => ['required', 'min:8'],
+            'title' => ['required', 'min:4'],
+            'description' => ['required'],
             'surface' => ['required', 'integer', 'min:10'],
             'rooms' => ['required', 'integer', 'min:1'],
             'bedrooms' => ['required', 'integer', 'min:0'],
             'floor' => ['required', 'integer', 'min:0'],
-            'price' => ['required', 'integer', 'min:0'],
-            'city' => ['required', 'min:2'],
-            'adress' => ['required', 'min:2'],
-            'postal_code' => ['required', 'min:5'],
+            'price' => ['required', 'integer','min:1'],
+            'city' => ['required'],
+            'adress' => ['required'],
+            'postal_code' => ['required', 'min:3'],
             'sold' => ['required', 'boolean'],
         ];
     }
@@ -52,7 +52,8 @@ class PropertyRequest extends FormRequest
             'city' => $this->input('city') ?? isset($_POST['city']),
             'adress' => $this->input('adress') ?? isset($_POST['adress']),
             'postal_code' => $this->input('postal_code') ?? isset($_POST['postal_code']),
-            'sold' => $this->input('sold') ? $_POST['sold'] : false
+            'sold' => $this->input('sold')
         ]);
+        //isset($_POST['sold']) ? $this->input('sold') : 0
     }
 }
