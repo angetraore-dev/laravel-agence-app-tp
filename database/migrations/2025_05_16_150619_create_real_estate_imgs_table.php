@@ -11,14 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::disableForeignKeyConstraints();
+        //Schema::disableForeignKeyConstraints();
         Schema::create('real_estate_imgs', function (Blueprint $table) {
             $table->id();
             $table->string('location')->unique();
             $table->foreignId('property_id')
-            ->constrained()
-            ->onUpdate('restrict')
-            ->onDelete('restrict');
+                ->constrained(
+                    table: 'properties',
+                    column: 'id',
+                    indexName: 'properties_real_estate_imgs_fk')
+                ->onUpdate('restrict')
+                ->onDelete('restrict')
+            ;
             $table->timestamps();
         });
     }

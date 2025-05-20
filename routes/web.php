@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\OptionController;
 use App\Http\Controllers\Admin\PropertyController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\SecurityController;
@@ -14,6 +15,7 @@ Route::prefix('admin')
     ->group(function (){
         Route::get('/', [AdminController::class, 'index'])->name('index');
         Route::resource('property', PropertyController::class)->except(['show']);
+        Route::resource('option', OptionController::class)->except(['show']);
     });
 
 

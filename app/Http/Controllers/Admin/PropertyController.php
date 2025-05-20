@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\PropertyRequest;
+use App\Models\Option;
 use App\Models\Property;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
+use JetBrains\PhpStorm\NoReturn;
 
 class PropertyController extends Controller
 {
@@ -18,10 +18,10 @@ class PropertyController extends Controller
      */
     public function index():view
     {
-        //$properties = Property::all()->paginate(10);
+        $properties = Property::orderBy('created_at', 'desc')->paginate(5);
         //DB::table('properties')->paginate(10)
         return view('admin.properties.index', [
-            'properties' => Property::orderBy('created_at', 'desc')->paginate(10)
+            'properties' => $properties
         ]);
     }
 
@@ -38,13 +38,13 @@ class PropertyController extends Controller
             'rooms' => 1,
             'bedrooms' => 0,
             'floor' => 0,
-            'price' => 0,
+            'price' => 1,
             'city' => 'Abidjan',
             'adress' => '103 quartier millionnaire, Yopougon Abidjan',
             'postal_code' => '93BPV93 ABJ01'
-            //'sold' => false,
         ]);
-        return view('admin.properties._form', ['property' => $property]);//create
+        $options = Option::all()->pluck( 'name', 'id');
+        return view('admin.properties._form', ['property' => $property, 'options' => $options]);//create
     }
 
     /**
@@ -52,9 +52,9 @@ class PropertyController extends Controller
      */
     public function store(PropertyRequest $propertyRequest)
     {
-        Property::create($propertyRequest->validated());
+        $property = Property::create($propertyRequest->validated());
+        $property->options()->sync($propertyRequest->validated('options'));
         return to_route('admin.property.index')->with('success', 'Bien immobilier enregistré');
-        //return redirect()->route('admin.property.index')->with('success', 'Bien immobilier enregistré');
     }
 
     /**
@@ -62,8 +62,8 @@ class PropertyController extends Controller
      */
     public function edit(Property $property)
     {
-        //$property = Property::findorFail($id);
-        return view('admin.properties._form', ['property' => $property]);//create
+        $options = Option::all()->pluck( 'name', 'id');
+        return view('admin.properties._form', ['property' => $property, 'options' => $options]);
     }
 
     /**
@@ -73,16 +73,17 @@ class PropertyController extends Controller
     public function update(PropertyRequest $propertyRequest, Property $property):RedirectResponse
     {
         $property->update($propertyRequest->validated());
+        $property->options()->sync($propertyRequest->validated('options'));
         return redirect()->route('admin.property.index')->with('success', 'Modifications enregistrées avec success');
     }
 
     /**
      * Remove the specified resource from storage.
      */
+    #[NoReturn]
     public function destroy(Property $property):RedirectResponse
     {
         $property->delete();
-        return redirect()->route('admin.property.index')->with('success', 'Le bien a bien ete supprime');
-        //
+        return to_route('admin.property.index')->with('success', 'Le bien a bien ete supprime');
     }
 }

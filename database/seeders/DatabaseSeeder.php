@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\{Property, RealEstateImg};
+use App\Models\{Option, Property, RealEstateImg};
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -19,12 +19,17 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
+            'password' => bcrypt('bonjour')
         ]);
 
         Property::factory()
-            ->has(RealEstateImg::factory()->count(4))
-            ->count(10)
+            ->has(RealEstateImg::factory()->count(2))
+            ->has(Option::factory(2))
+            ->count(2)
             ->create()
         ;
+
+        Option::factory(4)->create();
+        //php artisan migrate:fresh --seed
     }
 }

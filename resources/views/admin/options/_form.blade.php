@@ -1,5 +1,5 @@
 @extends('admin.admin')
-@section('title', ($property->exists) ? 'Editer' : 'Créer une annonce')
+@section('title', ($option->exists) ? 'Editer' : 'Créer une option')
 
 @section('content')
     <div @class(['flex h-dvh gap-1'])>
@@ -10,34 +10,13 @@
         <div id="content" @class(['w-auto grow p-4'])>
 
             <h3 @class(['my-5 text-center text-lg font-medium text-orange-500'])>@yield('title')</h3>
-            <form @class(['form h-min-dvh rounded-lg text-lg shadow-lg w-auto md:mx-auto lg:w-2/3']) method="post" action="{{ ($property->exists) ? route('admin.property.update', $property) : route('admin.property.store') }}" name="property">
+            <form @class(['form h-min-dvh rounded-lg text-lg shadow-lg w-auto md:mx-auto lg:w-2/3']) method="post" action="{{ ($option->exists) ? route('admin.option.update', $option) : route('admin.option.store') }}" name="option">
                 @csrf
-                @method($property->exists ? 'PATCH':'POST')
+                @method($option->exists ? 'PATCH':'POST')
 
-                <div @class(['md:grid grid-cols-2 md:justify-between md:gap-4 lg:w-md'])>
-                        @include('components.form-group', ['label' => 'Titre', 'name' => 'title', 'id' => 'title', 'value' => $property->title] )
-                        @include('components.form-group', ['type' => 'textarea', 'label' => 'Description', 'name' => 'description', 'id' => 'description', 'value' => $property->description] )
-                </div>
-                <div @class(['grid grid-cols-1 gap-4 sm:grid-cols-4 sm:gap-3'])>
-
-                    @include('components.form-group', ['type' => 'number', 'label' => 'Surface', 'name' => 'surface', 'id' => 'surface', 'value' => $property->surface] )
-                    @include('components.form-group', ['type' => 'number', 'label' => 'Piece', 'name' => 'rooms', 'id' => 'rooms', 'value' => $property->rooms] )
-                    @include('components.form-group', ['type' => 'number', 'label' => 'Chambre(s)', 'name' => 'bedrooms', 'id' => 'bedrooms', 'value' => $property->bedrooms] )
-                    @include('components.form-group', ['type' => 'number', 'label' => 'Salon', 'name' => 'floor', 'id' => 'floor', 'value' => $property->floor] )
-                </div>
                 <div @class([''])>
-                    @include('components.form-group', ['type' => 'number', 'label' => 'prix', 'name' => 'price', 'id' => 'price', 'value' => $property->price] )
+                    @include('components.form-group', ['type' => 'text', 'label' => 'name', 'name' => 'name', 'id' => 'name', 'value' => $option->name] )
                 </div>
-                <div @class(['grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3'])>
-                    @include('components.form-group', ['label' => 'Ville', 'name' => 'city', 'id' => 'city', 'value' => $property->city] )
-                    @include('components.form-group', ['label' => 'Adresse', 'name' => 'adress', 'id' => 'adress', 'value' => $property->adress] )
-                    @include('components.form-group', ['label' => 'Code postal', 'name' => 'postal_code', 'id' => 'postal_code', 'value' => $property->postal_code] )
-                </div>
-                <div @class(['grid grid-cols-2 gap-4'])>
-                    @include('components.select', ['multiple' => 'multiple', 'class' => 'w-full',  'id' => 'options', 'name' => 'options', 'label' => 'Options', 'value' => $options ])
-                    @include('components.checkbox', ['name' => 'sold', 'label' => 'vendu', 'class' => 'w-auto border-2 border-dark', 'value' => $property->sold ] ){{--'label' => 'vendu ?', --}}
-                </div>
-
                 <div @class(['flex flex-col md:items-end gap-6'])>
                     <button @class(['w-auto text-center btn btn-secondary md:w-1/2'])>
                         @yield('title')

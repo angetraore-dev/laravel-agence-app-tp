@@ -14,69 +14,25 @@
                     <h3 class="text-lg md:text-2xl text-start">@yield('title')</h3>
                 </div>
                 <div @class(['justify-self-end'])>
-                    <a href="{{ route('admin.property.create') }}" @class(['text-sm text-white uppercase rounded-md bg-indigo-500 hover:bg-teal-500 p-2 md:grid grid-cols-1']) id="create">ajouter</a>
+                    <a href="{{ route('admin.option.create') }}" @class(['text-sm text-white uppercase rounded-md bg-indigo-500 hover:bg-teal-500 p-2 md:grid grid-cols-1']) id="create">ajouter</a>
                 </div>
             </div>
 
             <table @class(['table w-full text-center text-sm overflow-auto border-2 border-gray-400'])><!-- justify-items-between align-self-center-->
                 <thead @class([''])>
                 <tr @class(['border border-bottom-2'])>
-                    <th @class(['border border-right-2'])>Titre</th>
-                    <th @class(['border border-right-2'])>images</th>
-                    <th @class(['border border-right-2'])>Surface</th>
-                    <th @class(['border border-right-2'])>Piece(s)</th>
-                    <th @class(['border border-right-2'])>Chambre(s)</th>
-                    <th @class(['border border-right-2'])>Salon</th>
-                    <th @class(['border border-right-2'])>Ville</th>
-                    <th @class(['border border-right-2'])>Code postal</th>
-                    <th @class(['border border-right-2'])>Adresse</th>
-                    <th @class(['border border-right-2'])>Description</th>
-                    <th @class(['border border-right-2'])>Prix</th>
-                    <th @class(['border border-right-2'])>Options?</th>
-                    <th @class(['border border-right-2'])>Soldé</th>
-
+                    <th @class(['border border-right-2'])>Noms</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($properties as $property)
+                @foreach($options as $option)
                     <tr @class(['border border-bottom-2'])>
-                        <td @class(['border border-right-2'])>{{ $property->title }}</td>
-                        <td @class(['border border-right-2'])>
-                            @if( ! $property->RealEstateImgs->isEmpty())
-                                @foreach( $property->RealEstateImgs as $img)
-                                    <img width="40" height="40" alt="pic" src="{{ asset($img->location) }}" />
-                                @endforeach
-                            @endif
-                        </td>
-                        <td @class(['border border-right-2'])>{{ $property->surface }}m2</td>
-                        <td @class(['border border-right-2'])>{{ $property->rooms }}</td>
-                        <td @class(['border border-right-2'])>{{ $property->bedrooms }}</td>
-                        <td @class(['border border-right-2'])>{{ $property->floor }}</td>
-                        <td @class(['border border-right-2'])>{{ $property->city }}</td>
-                        <td @class(['border border-right-2'])>{{ $property->postal_code }}</td>
-                        <td @class(['border border-right-2'])>{{ $property->adress }}</td>
-                        <td @class(['border border-right-2'])>{{ $property->description }}</td>
-                        <td @class(['border border-right-2'])>{{ number_format($property->price, thousands_separator: ' ') }}</td>
-                        <td @class(['border border-right-2'])>
-                            {{ $property->options }}
-
-                        </td>
-                        <td @class(['border border-right-2'])>
-                            @if($property->sold)
-                              <p class="text-success">
-                                  {{__('vendu')}}
-                              </p>
-                            @else
-                              <p class="text-gray">
-                                  {{__('non')}}
-                              </p>
-                            @endif
-                        </td>
+                        <td @class(['border border-right-2'])>{{ $option->name }}</td>
 
                         <td @class(['flex items-center p-6 gap-4'])>
-                            <a @class(['btn btn-primary w-auto text-sm font-small hover:btn-outline hover:text-blue-700 hover:border-blue-700']) href="{{route('admin.property.edit', $property) }}">edit</a>
-                            <form @class(['w-auto flex-1']) action="{{route('admin.property.destroy', $property) }}" method="post">
+                            <a @class(['btn btn-primary w-auto text-sm font-small hover:btn-outline hover:text-blue-700 hover:border-blue-700']) href="{{route('admin.option.edit', $option) }}">edit</a>
+                            <form @class(['w-auto flex-1']) action="{{route('admin.option.destroy', $option) }}" method="post">
                                 @csrf
                                 @method('delete')
                                 <button type="submit" @class(['btn btn-danger text-sm hover:btn-outline hover:text-red-700 hover:border-red-700'])>delete</button>
@@ -87,7 +43,7 @@
                 </tbody>
 
             </table>
-            <div @class(['mt-6 w-full p-4'])> {{ $properties->links() }} </div>
+            <div @class(['mt-6 w-full p-4'])> {{ $options->links() }} </div>
         </div>
     </div>
 

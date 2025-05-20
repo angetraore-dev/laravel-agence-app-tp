@@ -92,8 +92,26 @@ CREATE TABLE IF NOT EXISTS "properties"(
   "created_at" datetime,
   "updated_at" datetime
 );
+CREATE TABLE IF NOT EXISTS "real_estate_imgs"(
+  "id" integer primary key autoincrement not null,
+  "location" varchar not null,
+  "property_id" integer not null,
+  "created_at" datetime,
+  "updated_at" datetime,
+  foreign key("property_id") references "properties"("id") on delete restrict on update restrict
+);
+CREATE UNIQUE INDEX "real_estate_imgs_location_unique" on "real_estate_imgs"(
+  "location"
+);
+CREATE TABLE IF NOT EXISTS "options"(
+  "id" integer primary key autoincrement not null,
+  "name" varchar not null
+);
 
 INSERT INTO migrations VALUES(1,'0001_01_01_000000_create_users_table',1);
 INSERT INTO migrations VALUES(2,'0001_01_01_000001_create_cache_table',1);
 INSERT INTO migrations VALUES(3,'0001_01_01_000002_create_jobs_table',1);
 INSERT INTO migrations VALUES(4,'2025_04_14_083521_create_properties_table',2);
+INSERT INTO migrations VALUES(5,'2025_05_16_150619_create_real_estate_imgs_table',3);
+INSERT INTO migrations VALUES(6,'2025_05_16_161454_2025_04_14_083521_create_properties_table',4);
+INSERT INTO migrations VALUES(7,'2025_05_18_193610_create_options_table',5);
