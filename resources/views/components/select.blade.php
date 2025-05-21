@@ -1,5 +1,5 @@
 @php
-    $value ??=[];
+    $value ??='';
     $name ??= '';
     $label ??= $name;
     $class ??=null;
@@ -9,10 +9,11 @@
 
     <label class="label" for="{{ $name }}">{{ $label }}</label>
 
-    <select name="{{$name}}[]" id="{{$name}}" class="form-control" {{$multiple}}>
+    <select name="{{$name}}[]" id="{{$name}}" class="form-control" multiple="{{$multiple}}">
 
-        @foreach($value as $v =>  $k)
-            <option class="w-full" value="{{ $v }}" @selected($value->contains($v))>{{ old($name, $k) }}</option>
+        @foreach( $value as $v =>  $k )
+
+            <option class="w-full" value="{{ $v }}"  @selected(  $property->options->contains($v) ) > {{ old($name, $k) }}</option>
         @endforeach
 
     </select>
@@ -22,7 +23,11 @@
         @enderror
     </p>
 </div>
+{{--
+
 <script>
     let settings = {plugins: { remove_button: {title: 'supprimer'} } }
-    new TomSelect('select[multiple]', settings)
+    new TomSelect("select[multiple]", {plugins: { remove_button: {title: 'supprimer'} } });
 </script>
+
+--}}

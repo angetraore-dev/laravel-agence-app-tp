@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
         Property::factory()
             ->has(RealEstateImg::factory()->count(2))
             ->has(Option::factory(2))
-            ->count(2)
+            ->count(100)
             ->create()
         ;
 

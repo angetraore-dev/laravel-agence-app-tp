@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 
 class HomepageController extends Controller
 {
-    //
     public function index()
     {
-        return view('homepage.index', ['properties' => Property::orderBy('created_at', 'desc')->paginate(10)]);
+        $properties = Property::orderBy('created_at', 'desc')->where(['sold' => false])->limit(10)->get();
+        return view('homepage.index', ['properties' => $properties]);
     }
 }

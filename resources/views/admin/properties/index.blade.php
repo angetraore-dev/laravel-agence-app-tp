@@ -98,7 +98,7 @@
 
 @endsection
 
-<!--
+{{--
 push('scripts')
     @vite('resources/js/views/admin/index.js')
 endpush
@@ -244,4 +244,4 @@ endpush
             </table>
         </div>
     </div>
--->
+--}}

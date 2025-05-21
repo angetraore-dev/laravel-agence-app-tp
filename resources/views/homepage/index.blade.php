@@ -2,16 +2,14 @@
 @section('title', 'Page d accueil')
 @section('content')
 
-    <div @class(['grid grid-cols-1 gap-6 justify-between h-dvh md:items-center lg:grid-cols-3 lg:gap-4 lg:items-center border-2 border-gray-400'])>
+    <div @class(['w-full text-center my-4'])>
+        <h3 @class(['font-bold uppercase'])> Derniers biens ajoutés</h3>
+    </div>
 
-        @forelse($properties as $property)
-            <div data-id="{{__($property->id)}}" @class(['text-center m-4 p-4 md:mx-4 rounded-md shadow-lg border-2 border-gray-300 hover:border-indigo-500 bg-white bg-clip-border antaliased opacity-70'])>
-                <h3>{{ __($property->title) }}</h3>
-            </div>
-        @empty
-        @endforelse
-
-
+    <div @class(['grid grid-cols-1 gap-4 p-4 md:grid-cols-2 lg:grid-cols-3'])>
+        @foreach($properties as $property)
+            @include('components.property.card', $property)
+        @endforeach
     </div>
 @endsection
 @push('scripts')

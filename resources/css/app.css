@@ -83,6 +83,12 @@
     .success{
         color: green;
     }
+    .danger{
+        color: red;
+    }
+    .secondary{
+        color: #a0aec0;
+    }
     .text-white{
         color: white;
     }
@@ -91,6 +97,9 @@
     }
     .text-dark{
         color: black;
+    }
+    .text-primary{
+        color: blue;
     }
     /**
         *Btn px-6 py-4 | py-2 px-4 leading-5
