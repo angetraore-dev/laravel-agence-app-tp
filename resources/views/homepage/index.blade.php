@@ -1,5 +1,5 @@
 @extends('base')
-@section('title', 'Page d accueil')
+@section('title', 'Accueil')
 @section('content')
 
     <div @class(['w-full text-center my-4'])>

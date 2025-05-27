@@ -9,7 +9,7 @@ class HomepageController extends Controller
 {
     public function index()
     {
-        $properties = Property::orderBy('created_at', 'desc')->where(['sold' => false])->limit(10)->get();
+        $properties = Property::orderBy('created_at', 'desc')->where(['sold' => false])->limit(5)->get();
         return view('homepage.index', ['properties' => $properties]);
     }
 }

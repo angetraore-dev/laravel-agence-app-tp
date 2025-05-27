@@ -27,8 +27,11 @@
             <a href="{{ route('homepage.index') }}" class="block mt-4 md:inline-block md:mt-0 text-teal-200 hover:text-white mr-4">
                 Accueil
             </a>
+            <a href="{{ route('property.index') }}" class="block mt-4 md:inline-block md:mt-0 text-teal-200 hover:text-white mr-4">
+                Les Annonces
+            </a>
             <a href="{{ route('admin.index') }}" class="block mt-4 md:inline-block md:mt-0 text-teal-200 hover:text-white mr-4">
-                admin
+                Admin
             </a>
             @guest
                 <a @ href="{{route('security.login')}}" class="block mt-4 md:inline-block md:mt-0 text-teal-200 hover:text-white">

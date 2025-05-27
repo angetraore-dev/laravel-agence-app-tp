@@ -29,7 +29,7 @@ class PropertyRequest extends FormRequest
             'rooms' => ['required', 'integer', 'min:1'],
             'bedrooms' => ['required', 'integer', 'min:0'],
             'floor' => ['required', 'integer', 'min:0'],
-            'price' => 'bail|required|between:1,10000000000|numeric',
+            'price' => 'bail|required|qte:0|numeric',
             'city' => 'bail|required|alpha',
             'adress' => ['required'],
             'postal_code' => ['required', 'min:3'],

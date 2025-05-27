@@ -40,7 +40,7 @@
     }
     .form-control{
         /** hover:border-2 border-emerald-500/25 focus:ring-gray-900/5 **/
-        @apply flex-1 w-auto rounded-md border-2 p-4 mb-4;
+        @apply flex-1 w-auto border-2 p-4 mb-4 h-auto focus:opacity-50 rounded-md;
     }
     .label{
         @apply ml-2 mb-2 font-medium;
