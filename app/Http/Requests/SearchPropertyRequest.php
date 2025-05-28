@@ -22,7 +22,12 @@ class SearchPropertyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'price' => 'bail|numeric|between:1,10000000000000|nullable',
+            'price' => 'numeric|between:1,10000000000000|nullable',
+            'surface' => 'numeric|min:13|max:9000|nullable',
+            'rooms' => 'numeric|min:0|max:20|nullable',
+            'bedrooms' => 'numeric|min:0|max:20|nullable',
+            'city' => 'string|max:200|nullable',
+            'title' => 'string|nullable',
         ];
     }
 }

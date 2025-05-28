@@ -9,8 +9,13 @@ max-w-sm
         <a href="{{ route('property.show', ['slug' => $property->getSlug(), 'property' => $property]) }}">
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $property->title }}</h5>
         </a>
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            {{$property->surface }}m2 {{ $property->city .' '. $property->postal_code }}<br>{{$property->description}}
+        <p class="mb-3 font-normal text-sm text-gray-700 dark:text-gray-400">
+            Surface: {{ $property->surface }} m2 <br>
+            Nombre de piece(s): {{ $property->rooms ?? 0 }}<br>
+            Nombre de Chambre(s): {{ $property->bedrooms ?? 'studio' }}<br>
+            Ville: {{$property->city }}<br>
+            Code postal : {{ $property->postal_code }}<br>
+            {{$property->description}}
         </p>
         <p class="text-primary inline-flex items-center text-md font-medium">
             {{ number_format($property->price, thousands_separator: ' ') }} Fcfa
