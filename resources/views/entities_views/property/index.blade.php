@@ -34,9 +34,16 @@
         </form>
     </div>
     <div @class(['grid grid-cols-1 gap-4 p-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-3'])>
-        @foreach($properties as $property)
+        @forelse($properties as $property)
             @include('components.property.card', $property)
-        @endforeach
+        @empty
+            <div class="flex items-center gap-6 ">
+
+                <p class="text-secondary text-center">
+                    {{ __('Aucune information correspondante') }}
+                </p>
+            </div>
+        @endforelse
     </div>
     <div @class([''])>
         {{ $properties->links() }}

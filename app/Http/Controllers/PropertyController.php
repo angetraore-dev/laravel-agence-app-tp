@@ -15,33 +15,36 @@ class PropertyController extends Controller
         //Property::query()->paginate(20);
         $query = Property::query();
 
-        if ($searchPropertyRequest->has('price') && !empty($searchPropertyRequest->input('price'))){
+        if ( $price = $searchPropertyRequest->validated('price') ){
 
-            $query->where('price', '<', $searchPropertyRequest->input('price'));
+            $query->where('price', '<', $price);
         }
-        if ($searchPropertyRequest->has('surface') && !empty($searchPropertyRequest->input('surface'))){
+        if ( $surface = $searchPropertyRequest->validated('surface') ){
 
-            $query->where('surface', '>', $searchPropertyRequest->input('surface'));
+            $query->where('surface', '>', $surface);
         }
 
-        if ( $searchPropertyRequest->has('rooms') && !empty( $searchPropertyRequest->input('rooms') ) ){
+        if ( $rooms = $searchPropertyRequest->validated('rooms') ){
 
-            $query->where('rooms', '<', $searchPropertyRequest->input('rooms'));
+            $query->where('rooms', '<', $rooms);
         }
-        if ( $searchPropertyRequest->has('bedrooms') && !empty( $searchPropertyRequest->input('bedrooms') )){
+        if ( $bedrooms = $searchPropertyRequest->validated('bedrooms') ){
 
-            $query->where('bedrooms', '<', $searchPropertyRequest->input('bedrooms'));
+            $query->where('bedrooms', '<', $bedrooms);
         }
-        if ($searchPropertyRequest->has('city') && !empty( $searchPropertyRequest->input('city') ) ){
+        if ( $city = $searchPropertyRequest->validated('city') ){
 
-            $query->where('city', 'like', '%'. $searchPropertyRequest->input('city') .'%' );
+            $query->where('city', 'like', '%'. $city .'%' );
         }
-        if ($searchPropertyRequest->has('title') && !empty($searchPropertyRequest->input('title')) ){
+        if ( $title = $searchPropertyRequest->validated('title') ){
 
-            $query->where('title', 'like', '%'. $searchPropertyRequest->input('title') .'%');
+            $query->where('title', 'like', '%'. $title .'%');
         }
+
         return view('entities_views.property.index', [
+
             'properties' => $query->paginate(20),
+
             'input' => $searchPropertyRequest->validated()
         ]);
 
@@ -49,20 +52,16 @@ class PropertyController extends Controller
 
     public function show(string $slug, Property $property)
     {
-        $property = Property::findOrFail($property->id);
+        $expectedSlug = $property->getSlug();
+
+        if($slug != $expectedSlug){
+
+            return to_route('property.index');
+            //['slug' => $expectedSlug, 'property' => $property ]
+        }
+        //$property = Property::findOrFail($property->id);
         return view('entities_views.property.show', ['property' => $property ]);
     }
 
-    public function search(SearchPropertyRequest $request)
-    {
-        if ($request->validated()){
 
-            $data = match ($request) {
-                $request->input('price') => Property::where(['price' => $request->input('price')]),
-                $request->input('surface') => Property::where(['surface' => $request->input('surface')]),
-                default => [],
-            };
-        }
-        return $data;
-    }
 }

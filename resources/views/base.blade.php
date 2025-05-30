@@ -27,5 +27,7 @@
     <section @class(['bottom-0'])><!--relative-->
         @include('components.footer')
     </section>
+
 </body>
+
 </html>
