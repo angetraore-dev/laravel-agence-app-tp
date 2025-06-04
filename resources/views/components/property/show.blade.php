@@ -1,39 +1,66 @@
-{{--https://flowbite.com/docs/components/card/#default-card
-max-w-sm
---}}
-<div id="propertyCard" data-id="{{ $property->id }}" data-href="{{ route('property.show', ['slug' => $property->getSlug(), 'property' => $property]) }}" class="space-4 w-sm bg-white rounded-lg shadow-sm rounded-md cursor-pointer hover:ring border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+<div id="propertyShow" class="grid grid-cols-1 my-4 mx-auto md:w-2/3 border-2 border-gray-300 hover:ring p-2 shadow-2xl rounded-lg bg-white">
+    <!--gap-4 w-sm md:w-auto md:mx-auto -->
     <div @class(['flex flex-col border-2 border-dark'])>
-        <img class="items-center text-center" src="#" alt="immobilier_img" />
+        @forelse( $property->RealEstateImgs as $img)
+            <img width="40" height="40" alt="pic" src="{{ storage_path('public').'/'.$img->location }}" />
+        @empty
+            <img class="items-center text-center" src="#" alt="immobilier_img" />
+        @endforelse
     </div>
-    <div class="card-body p-5">
-        <a href="{{ route('property.show', ['slug' => $property->getSlug(), 'property' => $property]) }}">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $property->title }}</h5>
-        </a>
-        <p class="mb-3 font-normal text-sm text-gray-700 dark:text-gray-400">
-            Surface: {{ $property->surface }} m2 <br>
-            Nombre de piece(s): {{ $property->rooms ?? 0 }}<br>
-            Nombre de Chambre(s): {{ $property->bedrooms ?? 'studio' }}<br>
-            Ville: {{$property->city }}<br>
-            Code postal : {{ $property->postal_code }}<br>
-            {{$property->description}}
-        </p>
-        <p class="text-primary inline-flex items-center text-md font-medium">
-            {{ number_format($property->price, thousands_separator: ' ') }} Fcfa
-        </p>
+    <div class="card-body p-2">
+        <div class="">
+            <div class="grid grid-cols-2">
+                <div>
+                    <h3 class="text-2xl md:text-xl font-bold uppercase">{{ $property->title }}</h3>
+                    <h2 class="text-xl"> @if($property->rooms > 1) {{ $property->rooms }} pièce(s) @else studio @endif - {{ $property->surface }}m2</h2>
+                </div>
+                <div class="justify-between text-end">
+                    <span @class(["inline-flex items-center rounded-md p-1 ring-1 ring-inset", ($property->sold) ? 'bg-gray-500 ring-gray-600/20' : 'bg-green-700 ring-green-600/20' ])></span>
+                    <button id="contactPop" type="button" class="btn btn-sm text-sm text-center {{ $property->sold ? 'btn-secondary' : 'btn-primary cursor-pointer' }}" {{ $property->sold ? 'disabled=disabled' : ' ' }}>
+                        Contacter
+                    </button>
+                    <div class="flex flex-col text-xs {{ $property->sold ? 'text-secondary' : 'text-success' }}">
+                        Publié le: {{ date_format(new DateTime($property->createdAt), 'd-m-Y') }}
+                    </div>
+                </div>
+            </div>
+            <h2 class="text-xl">{{ $property->bedrooms ?? 'studio'}} chambre(s)</h2>
+            <h2 class="text-xl">{{ $property->city }} - {{ $property->postal_code }}</h2>
 
-        <div @class(['flex flex-row w-full justify-end'])>
-            <span @class(['font-bold text-sm', ($property->sold) ? 'secondary' : 'success'])>
-                {{ $property->sold ? 'vendu' : 'disponible' }}
-            </span>
+            <div @class([''])>
+                <p class="text-secondary font-bold">prix:</p>
+                <div class="text-primary text-2xl">
+                    {{ $property->getNumberFormatted($property->price, 'FCFA') }}
+                </div>
+            </div>
+            <div class="flex flex-wrap justify-between sm:gap-0">
+
+                <div class="sm:w-3/4">
+                    <p class="text-secondary font-bold">Description:</p>
+                    <div class="p-2 border-2 border-gray-300">
+                        {{ $property->description }}
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab blanditiis, consectetur cumque doloremque earum est eveniet harum iusto nam odit perspiciatis provident quas quis quisquam recusandae reiciendis rerum voluptatum. Minima!
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium assumenda corporis dignissimos dolore ducimus eaque eum explicabo illum ipsam iste, magnam obcaecati omnis, quia quos repellat reprehenderit sunt unde velit.
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias, cumque, dicta eos id in inventore itaque iusto maxime, numquam omnis optio placeat provident qui reiciendis sit unde vel velit!
+                        </p>
+                    </div>
+                </div>
+                <div class="sm:w-auto">
+                    <p class="text-secondary font-bold">Comodités:</p>
+                    <div class="p-2 border-2 border-gray-300">
+                        <ul>
+                            @forelse($property->options as $v)
+                                <li>{{ $v->name }}</li>
+                            @empty
+                                <li>aucune option disponible</li>
+                            @endforelse
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-{{--
-<a href="{{ route('property.show', ['property' => $property, 'slug' => $property->getSlug()]) }}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-            Détail
-            <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-            </svg>
-        </a>
---}}
-
+<!-- Modal Form -->
+@include('components.modal')

@@ -45,7 +45,7 @@
                         <td @class(['border border-right-2'])>
                             @if( ! $property->RealEstateImgs->isEmpty())
                                 @foreach( $property->RealEstateImgs as $img)
-                                    <img width="40" height="40" alt="pic" src="{{ asset($img->location) }}" />
+                                    <img width="40" height="40" alt="pic" src="{{ storage_path('public').'/'.$img->location }}" />
                                 @endforeach
                             @endif
                         </td>
@@ -59,7 +59,13 @@
                         <td @class(['border border-right-2'])>{{ $property->description }}</td>
                         <td @class(['border border-right-2'])>{{ number_format($property->price, thousands_separator: ' ') }}</td>
                         <td @class(['border border-right-2'])>
-                            {{ $property->options }}
+                            <ul>
+                                @forelse($property->options as $v)
+                                    <li>{{ $v->name }}</li>
+                                @empty
+                                    <li>aucune option disponible</li>
+                                @endforelse
+                            </ul>
 
                         </td>
                         <td @class(['border border-right-2'])>

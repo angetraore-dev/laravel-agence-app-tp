@@ -80,8 +80,15 @@
     .border-info{
         border: #9ca3af 2px solid;
     }
+
     .success{
         color: green;
+    }
+    .text-success{
+        color: forestgreen;
+    }
+    .border-success{
+        border: green 2px solid;
     }
     .danger{
         color: red;

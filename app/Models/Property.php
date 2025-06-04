@@ -53,4 +53,9 @@ class Property extends Model
         return $this->hasMany(RealEstateImg::class);
     }
 
+    public function getNumberFormatted($value, $currency)
+    {
+        return number_format($value, thousands_separator: '.') .' '.$currency;
+    }
+
 }
