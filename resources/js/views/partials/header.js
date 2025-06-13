@@ -1,4 +1,4 @@
-import {ConstToast} from "../../tweaks.js";
+import {ConstToast} from "../../dependencies.js";
 
 const toogleBtn = document.getElementById('toggleButton')
 const navItems = document.getElementById('navItems')

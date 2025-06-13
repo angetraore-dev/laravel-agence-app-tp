@@ -5,7 +5,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //import Swal from "sweetalert2";
 //window.Swal = Swal;
 //window.bootstrap = bootstrap
-import {baseUrl, ConstToast} from "./tweaks.js";
+import {baseUrl, ConstToast} from "./dependencies.js";
 
 document.addEventListener("DOMContentLoaded", () => {
 

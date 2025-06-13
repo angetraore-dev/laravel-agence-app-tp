@@ -5,11 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Option extends Model
+class Appartement extends Model
 {
     //
     use HasFactory;
-    protected $fillable = ['name'];
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'bien_id',
+        'floor',
+        'ascenceur',
+        'balcon'
+    ];
     public $timestamps = false;
+
 }

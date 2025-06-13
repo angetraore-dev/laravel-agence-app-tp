@@ -22,6 +22,11 @@
         @include('components.header')
     </section>
     <main @class(['overflow-auto'])><!-- id="main" md:overflow-y-auto-->
+        @if(session('success'))
+            <div class="success text-success">
+                {{ session('success') }}
+            </div>
+        @endif
         @yield('content')
     </main>
     <section @class(['bottom-0'])><!--relative-->

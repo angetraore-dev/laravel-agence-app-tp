@@ -80,7 +80,9 @@
     .border-info{
         border: #9ca3af 2px solid;
     }
-
+    .border-primary{
+        border: blue 2px solid;
+    }
     .success{
         color: green;
     }

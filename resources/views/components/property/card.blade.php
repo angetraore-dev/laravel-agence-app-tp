@@ -8,11 +8,44 @@ max-w-sm
     <div class="card-body p-5">
 
         <h5 class="mb-2 text-2xl text-center font-bold tracking-tight text-gray-900 dark:text-white">{{ $property->title }}</h5>
-        <div class="flex justify-end mb-2">
+        <div class="flex flex-col w-auto sm:w-1/2 sm:justify-end mb-2"><!--flex justify-end mb-2-->
 
-            <div class="w-24 text-dark text-sm p-2 rounded-md shadow-md bg-gray-200 border-2 border-info">
-                <p>Surface: {{ $property->surface }} m2</p>
-                <p>Ville: {{$property->city }}</p>
+            <!--w-24 text-dark text-sm p-2 rounded-md shadow-md bg-gray-200 border-2 border-info-->
+            <div class="text-dark text-sm p-2 rounded-md shadow-md bg-gray-200 border-2 border-info">
+                <table>
+                    <tr>
+                        <td>Surface</td>
+                        <td>{{ $property->surface }}m2</td>
+                    </tr>
+                    <tr>
+                        <td class="italic">Pièce(s)</td>
+                        <td class="font-bold">{{ ($property->rooms != 0) ? $property->rooms : 'studio'}}</td>
+                    </tr>
+                    @if($property->rooms != 0)
+                        <tr>
+                            <td>Chambre(s)</td>
+                            <td class="font-bold">{{ $property->bedrooms }}</td>
+                        </tr>
+                    @endif
+                    <tr>
+                        <td>Adresse</td>
+                        <td>{{ $property->postal_code }}, {{ $property->city }}</td>
+                    </tr>
+                    <tr>
+                        <td>Spécificités</td>
+                        <td>
+                            <div class="p-2 border-2 border-gray-300">
+                                <ul>
+                                    @forelse($property->options as $v)
+                                        <li>{{ $v->name }}</li>
+                                    @empty
+                                        <li>aucune option disponible</li>
+                                    @endforelse
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
         <div class="flex justify-between gap-4 mb-4">

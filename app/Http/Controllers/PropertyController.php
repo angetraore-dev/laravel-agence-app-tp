@@ -2,18 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ContactRequest;
 use App\Http\Requests\SearchPropertyRequest;
+use App\Mail\ContactMail;
 use App\Models\Property;
-use Illuminate\Http\Request;
+use Illuminate\Container\Container;
+use Illuminate\Support\Facades\Mail;
+
+//use Illuminate\Http\Request;
 
 class PropertyController extends Controller
 {
-    //
-
-    public function index(SearchPropertyRequest $searchPropertyRequest)
+    /**
+     * @param SearchPropertyRequest $searchPropertyRequest
+     * @return Container|mixed|object
+     */
+    public function index(SearchPropertyRequest $searchPropertyRequest): mixed
     {
         //Property::query()->paginate(20);
-        $query = Property::query();
+        $query = Property::query()->with('options');
 
         if ( $price = $searchPropertyRequest->validated('price') ){
 
@@ -50,7 +57,12 @@ class PropertyController extends Controller
 
     }
 
-    public function show(string $slug, Property $property)
+    /**
+     * @param string $slug
+     * @param Property $property
+     * @return Container|mixed|object
+     */
+    public function show(string $slug, Property $property): mixed
     {
         $expectedSlug = $property->getSlug();
 
@@ -61,6 +73,13 @@ class PropertyController extends Controller
         }
         //$property = Property::findOrFail($property->id);
         return view('entities_views.property.show', ['property' => $property ]);
+    }
+
+    public function contact(Property $property, ContactRequest $contactRequest)
+    {
+        Mail::send(new ContactMail($property, $contactRequest->validated()));
+        return back()->with('success', 'Message bien envoye');
+
     }
 
 

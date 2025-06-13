@@ -1,4 +1,4 @@
-<div id="propertyShow" class="grid grid-cols-1 my-4 mx-auto md:w-2/3 border-2 border-gray-300 hover:ring p-2 shadow-2xl rounded-lg bg-white">
+<div id="propertyShow" class="grid grid-cols-1 md:w-2/3 bg-white shadow-2xl rounded-lg p-2 my-4 mx-auto border-2 border-gray-300 hover:ring">
     <!--gap-4 w-sm md:w-auto md:mx-auto -->
     <div @class(['flex flex-col border-2 border-dark'])>
         @forelse( $property->RealEstateImgs as $img)
@@ -24,21 +24,45 @@
                     </div>
                 </div>
             </div>
-            <h2 class="text-xl">{{ $property->bedrooms ?? 'studio'}} chambre(s)</h2>
-            <h2 class="text-xl">{{ $property->city }} - {{ $property->postal_code }}</h2>
+            <table>
+                <tr>
+                    <td>Surface habitable</td>
+                    <td class="font-bold">
+                        {{ $property->surface }}m2
+                    </td>
+                </tr>
+                <tr>
+                    <td class="italic">Pièce(s)</td>
+                    <td class="font-bold">{{ ($property->rooms != 0) ? $property->rooms : 'studio'}}</td>
+                </tr>
+                @if($property->rooms != 0)
+                    <tr>
+                        <td>Chambre(s)</td>
+                        <td class="font-bold">{{ $property->bedrooms }}</td>
+                    </tr>
+                @endif
+                <tr>
+                    <td>Etage</td>
+                    <td class="font-bold">{{ ($property->floor != 0) ? $property->floor : 'Rez de chaussée'}}</td>
+                </tr>
 
-            <div @class([''])>
-                <p class="text-secondary font-bold">prix:</p>
-                <div class="text-primary text-2xl">
-                    {{ $property->getNumberFormatted($property->price, 'FCFA') }}
-                </div>
-            </div>
+                <tr>
+                    <td>Adresse</td>
+                    <td class="font-bold">{{ $property->postal_code }}, {{ $property->city }}</td>
+                </tr>
+                <tr>
+                    <td>Prix</td>
+                    <td class="text-primary text-2xl">
+                        {{ $property->getNumberFormatted($property->price, 'FCFA') }}
+                    </td>
+                </tr>
+            </table>
             <div class="flex flex-wrap justify-between sm:gap-0">
 
                 <div class="sm:w-3/4">
                     <p class="text-secondary font-bold">Description:</p>
                     <div class="p-2 border-2 border-gray-300">
-                        {{ $property->description }}
+                        {{ nl2br($property->description) }}
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab blanditiis, consectetur cumque doloremque earum est eveniet harum iusto nam odit perspiciatis provident quas quis quisquam recusandae reiciendis rerum voluptatum. Minima!
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium assumenda corporis dignissimos dolore ducimus eaque eum explicabo illum ipsam iste, magnam obcaecati omnis, quia quos repellat reprehenderit sunt unde velit.
@@ -61,6 +85,27 @@
             </div>
         </div>
     </div>
+
+    <div @class(['w-full gap-4 p-4 hidden']) id="contact_form">
+        <h1 class="mb-4 text-center">Intéréssé par bien ? Laissé un message à l'annonceur :d</h1>
+
+        <form id="form" action="{{ route('property.contact', ['property' => $property]) }}" method="post">
+            @csrf
+            <div @class(['grid grid-cols-1 sm:grid-cols-2 gap-4'])>
+                @include('components.input', ['type' =>'text', 'name' =>'firstname', 'label' => 'Nom', 'class' =>'', 'div_group_class' =>'flex flex-col'])
+                @include('components.input', ['type' =>'text', 'name' =>'lastname', 'label' => 'Prenoms', 'class' =>'', 'div_group_class' =>'flex flex-col'])
+                @include('components.input', ['name' =>'phone', 'label' => 'Telephone', 'class' =>'', 'div_group_class' =>'flex flex-col'])
+                @include('components.input', ['type' =>'email', 'name' =>'email', 'label' => 'Email', 'class' =>'', 'div_group_class' =>'flex flex-col'])
+                @include('components.input', ['type' =>'textarea', 'name' =>'message', 'class' =>'', 'div_group_class' =>'flex flex-col'])
+
+                <div class="hidden">
+                    @include('components.input', ['value' => route('property.show', ['slug' => $property->getSlug(), 'property' => $property]), 'type' =>'hidden', 'name' =>'property', 'class' =>'', 'div_group_class' =>'flex flex-col'])
+                </div>
+            </div>
+            <div class="flex flex-col text-center sm:w-1/2 sm:items-end">
+                <button id="send_contact_form" class="btn btn-lg btn-primary" type="submit" name="send_contact_form">Envoyer</button>
+            </div>
+        </form>
+    </div>
 </div>
-<!-- Modal Form -->
-@include('components.modal')
+{{-- @include('components.modal') --}}

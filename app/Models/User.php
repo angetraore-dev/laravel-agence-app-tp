@@ -3,7 +3,10 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Enums\UserType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -20,6 +23,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'adresse',
+        'telephone',
+        'type',//Particulier, Acquereur or Pro
+        'statut'
     ];
 
     /**
@@ -42,6 +49,25 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'type' => UserType::class
         ];
+    }
+
+    /**
+     * @return BelongsTo
+     * One user or not can have one ProfilPro
+     */
+    public function profilPro():BelongsTo
+    {
+        return $this->belongsTo(ProfilPro::class);
+    }
+
+    /**
+     * @return BelongsToMany
+     * One user can create many bienImmobiliers
+     */
+    public function bienImmobiliers():BelongsToMany
+    {
+        return $this->belongsToMany(BienImmobilier::class);
     }
 }
