@@ -2,15 +2,18 @@
 
 namespace App\Models;
 
+use Database\Factories\ProfilProFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class ProfilPro extends Model
 {
-    //
     use HasFactory;
+    protected static function newFactory(): ProfilProFactory
+    {
+        return ProfilProFactory::new();
+    }
 
     protected $fillable = [
       'agence',
@@ -23,15 +26,6 @@ class ProfilPro extends Model
     public function user():BelongsTo
     {
         return $this->belongsTo(User::class);
-    }
-
-    /**
-     * @return BelongsToMany
-     *
-     */
-    public function bienImmobiliers():BelongsToMany
-    {
-        return $this->belongsToMany(BienImmobilier::class);
     }
 
 }

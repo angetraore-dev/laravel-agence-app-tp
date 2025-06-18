@@ -2,32 +2,56 @@
 
 namespace App\Models;
 
+use App\Enums\PropertyStatus;
+use App\Enums\PropertyType;
+use App\Enums\TerrainZone;
+use Database\Factories\PropertyFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use LaravelLang\Publisher\Concerns\Has;
 
 class Property extends Model
 {
     use HasFactory;
+    protected static function newFactory(): PropertyFactory
+    {
+        return PropertyFactory::new();
+    }
+
     protected $fillable = [
         'title',
-        'description',
+        'type',
         'surface',
         'rooms',
         'bedrooms',
-        'floor',
         'price',
         'city',
         'adress',
-        'postal_code',
-        'sold',
-        'real_estate_img_id'
+        'description',
+        'status',
+        //'user_id'
+        //, floor, postal_code, sold
     ];
-    protected $guarded = [
-        'id'
+    protected $guarded = ['id'];
+    protected $casts = [
+        'type' => PropertyType::class,
+        'status' => PropertyStatus::class,
+        'zone' => TerrainZone::class
     ];
+
+    /**
+     * @return array|string[]
+     */
+    public function getCasts()
+    {
+        return $this->casts;
+    }
 
     /**
      * @return string
@@ -46,11 +70,27 @@ class Property extends Model
     }
 
     /**
-     * @return HasMany
+     * @return HasOne
      */
-    public function RealEstateImgs():HasMany
+    public function maison():HasOne
     {
-        return $this->hasMany(RealEstateImg::class);
+        return $this->hasOne(Maison::class);
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function appartement():HasOne
+    {
+        return $this->hasOne(Appartement::class);
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function terrain():HasOne
+    {
+        return $this->hasOne(Terrain::class);
     }
 
     /**
@@ -63,4 +103,24 @@ class Property extends Model
         return number_format($value, thousands_separator: '.') .' '.$currency;
     }
 
+    public function filterByType(Request $request)
+    {
+        $type = PropertyType::tryFrom($request->input('type'));
+
+        $properties = Property::when($type, function($query) use ($type){
+
+            return $query->where('type', $type);
+
+        })->with('options')->paginate(10);
+
+        return view('admin.properties.index', ['properties' => $properties]);
+    }
+
+///**
+//     * @return HasOne
+//     */
+//    public function users():HasOne
+//    {
+//        return $this->hasOne(User::class);
+//    }
 }

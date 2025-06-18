@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum BienImmobilierStatus:string
+enum PropertyStatus:string
 {
     case COMPLETE = 'complete';
     case AVAIBLE = 'avaible';

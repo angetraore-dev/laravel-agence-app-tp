@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,10 +19,10 @@ return new class extends Migration
             $table->string('telephone');
             $table->enum('type', ['particulier', 'pro', 'acquereur']);
             $table->string('adresse');
-            $table->boolean('statut');
+            $table->boolean('status');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            //$table->string('password_confirmation');
+            $table->string('password_confirmation');
             $table->rememberToken();
             $table->timestamps();
         });
@@ -47,9 +48,14 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //Schema::table('users', function (Blueprint $table) {});
         Schema::dropIfExists('users');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
+        Schema::table('profil_pros', function (Blueprint $blueprint){
+            $blueprint->dropForeignIdFor(User::class);
+        });
+        Schema::table('properties', function (Blueprint $blueprint){
+            $blueprint->dropForeignIdFor(User::class);
+        });
     }
 };

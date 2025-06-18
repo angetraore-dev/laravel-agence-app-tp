@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use JetBrains\PhpStorm\ArrayShape;
 
 class TerrainRequest extends FormRequest
 {
@@ -17,24 +18,22 @@ class TerrainRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array
      */
-    public function rules(): array
+    #[ArrayShape(['constructible' => "string", 'zone' => "string", 'property_id' => "string"])]
+    public static function rules(): array
     {
         return [
-            'bien_id' => 'bail|exists:bien_immobiliers,id|required',
-            'constructible' => 'bail|required|boolean',
-            'zone' => 'bail|min:2|max:100|required',
+            'constructible' => 'bail|boolean',
+            'zone' => 'required|in:agricole,rurale',
+            'property_id' => 'bail|exists:properties,id'
         ];
     }
 
     protected function prepareForValidation()
     {
-        //'bien_id' => $this->input('bien'),
-        //           'constructible' => $this->input('constructible'),
-        //           'zone' => $this->input('zone'),
         $this->merge([
-            'created_at' => $this->input('created_at') ?: time(),
+           'created_at' => $this->input('created_at') ?: time(),
            'updated_at' => $this->input('updated_at') ?: time(),
         ]);
     }

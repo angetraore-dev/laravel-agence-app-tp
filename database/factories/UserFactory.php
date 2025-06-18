@@ -2,18 +2,18 @@
 
 namespace Database\Factories;
 
+use App\Enums\UserType;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
+ * @extends Factory
  */
 class UserFactory extends Factory
 {
-    /**
-     * The current password being used by the factory.
-     */
+    protected $model = User::class;
     protected static ?string $password;
 
     /**
@@ -23,22 +23,40 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        //bcrypt('bonjour')
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
+            'telephone' => fake()->phoneNumber(),
+            'type' => UserType::PRO,
+            'adresse' => fake()->address(),
+            'status' => fake()->boolean(),
             'password' => static::$password ??= Hash::make('password'),
+            'password_confirmation' => static::$password,
             'remember_token' => Str::random(10),
+            'email_verified_at' => now()
         ];
     }
 
-    /**
-     * Indicate that the model's email address should be unverified.
-     */
-    public function unverified(): static
+    public function unverified():static
     {
-        return $this->state(fn (array $attributes) => [
-            'email_verified_at' => null,
+        return $this->state(fn(array $attributes) => [
+            'email_verified_at' => null
         ]);
     }
+
+    public function userParticulier():static
+    {
+        return $this->state(fn($attributes) => [
+            'type' => UserType::PARTICULIER
+        ]);
+    }
+
+    public function userACQUEREUR():static
+    {
+        return $this->state(fn($attributes) => [
+            'type' => UserType::ACQUEREUR
+        ]);
+    }
+
 }

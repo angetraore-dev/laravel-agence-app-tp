@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\PropertyStatus;
+use App\Enums\PropertyType;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\PropertyRequest;
 use App\Models\Option;
 use App\Models\Property;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use JetBrains\PhpStorm\NoReturn;
 
@@ -32,16 +35,18 @@ class PropertyController extends Controller
     {
         $property = new Property();
         $property->fill( [
-            'title' => 'le bien immobilier',
-            'description' => 'description',
+            'title' => 'Go until the end',
+            'type' => PropertyType::MAISON,
             'surface' => 14,
-            'rooms' => 1,
+            'rooms' => 0,
             'bedrooms' => 0,
-            'floor' => 0,
             'price' => 1,
+            'description' => 'description',
             'city' => 'Abidjan',
-            'adress' => '103 quartier millionnaire, Yopougon Abidjan',
-            'postal_code' => '93BPV93 ABJ01'
+            'adress' => '103 quartier banco residentiel, Yopougon millionnaire Abidjan',
+            'status' => PropertyStatus::AVAIBLE,
+            'user_id' => Auth::getUser() ?: 1,
+            //'floor' => 0, 'postal_code' => '93BPV93 ABJ01'
         ]);
         $options = Option::all()->pluck( 'name', 'id');
         return view('admin.properties._form', ['property' => $property, 'options' => $options]);//create
@@ -87,3 +92,62 @@ class PropertyController extends Controller
         return to_route('admin.property.index')->with('success', 'Le bien a bien ete supprime');
     }
 }
+
+/**
+ *     public function store(BienImmobilierRequest $bienImmobilierRequest)
+{
+switch ($bienImmobilierRequest->input('type')){
+case 'maison':
+if ( $bienImmobilierRequest->validate(MaisonRequest::rules()) ){
+
+//Create BienImmobilier
+$bienImmobilier = BienImmobilier::create($bienImmobilierRequest->validated());
+
+//Synchronize Specificities
+$bienImmobilier->specificities()->sync($bienImmobilierRequest->validated('specificities'));
+
+//Save Maison details
+Maison::create($bienImmobilierRequest->validated( MaisonRequest::rules(),[
+'nb_etages' => $bienImmobilierRequest->input('nb_etages'),
+'jardin' => $bienImmobilierRequest->input('jardin'),
+'garage' => $bienImmobilierRequest->input('garage'),
+'bien_immobilier_id' => $bienImmobilier->id
+]));
+}
+break;
+case 'appartement':
+if ($bienImmobilierRequest->validate(AppartementRequest::rules())){
+
+$bienImmobilier = BienImmobilier::create($bienImmobilierRequest->validated());
+$bienImmobilier->specificities()->sync($bienImmobilierRequest->validated('specificities'));
+Appartement::create($bienImmobilierRequest->validated(AppartementRequest::rules(),
+[
+'bien_immobilier_id' => $bienImmobilier->id,
+'floor' => $bienImmobilierRequest->input('floor'),
+'ascenceur' => $bienImmobilierRequest->input('ascenceur'),
+'balcon' => $bienImmobilierRequest->input('balcon')
+])
+);
+}
+break;
+case 'terrain':
+if ($bienImmobilierRequest->validate(TerrainRequest::rules())){
+
+$bienImmobilier = BienImmobilier::create($bienImmobilierRequest->validated());
+$bienImmobilier->specificities()->sync($bienImmobilierRequest->validated('specificities'));
+Terrain::create($bienImmobilierRequest->validated(TerrainRequest::rules(),
+[
+'bien_immobilier_id' => $bienImmobilier->id,
+'constructible' => $bienImmobilierRequest->input('constructible'),
+'zone' => $bienImmobilierRequest->input('zone')
+])
+);
+}
+break;
+default: BienImmobilier::create($bienImmobilierRequest->validated());
+}
+return to_route('admin.bien.index')->with('success', 'Bien immobilier créé');
+
+}
+
+ */

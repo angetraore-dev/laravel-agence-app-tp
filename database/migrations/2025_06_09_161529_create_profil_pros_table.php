@@ -14,18 +14,17 @@ return new class extends Migration
     {
         Schema::create('profil_pros', function (Blueprint $table) {
             $table->id();
-            $table->string('agence')->unique();
+            $table->string('agence');
             $table->string('rccm');
             $table->string('cc');
             $table->string('abonnement');
-            $table->foreignId('user_id')
-                ->constrained(
-                    'users',
-                    'id',
-                    'user_id_fk'
+            $table->timestamps();
+            $table->foreignIdFor(User::class)->constrained(
+                'users',
+                'id',
+                'user_id_fk'
                 )
             ;
-            $table->timestamps();
         });
     }
 

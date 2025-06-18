@@ -22,20 +22,16 @@ class MaisonRequest extends FormRequest
     public static function rules(): array
     {
         return [
-            'bien_id' => 'bail|exists:bien_immobiliers,id',
-            'nb_etages' => 'bail|numeric|min:0|max:100',
+            'nb_etages' => 'required|numeric|min:0|max:50',
             'jardin' => 'bail|boolean',
-            'garage' => 'bail|boolean'
+            'garage' => 'bail|boolean',
+            'property_id' => 'bail|exists:properties,id'
         ];
     }
 
     protected function prepareForValidation()
     {
         $this->merge([
-           'bien_id' => $this->input('bien'),
-           'nb_etages' => $this->input('nb_etages'),
-           'jardin' => $this->input('jardin') ?: false,
-           'garage' => $this->input('garage') ?: false,
            'created_at' => $this->input('created_at') ?: time(),
            'updated_at' => $this->input('updated_at') ?: time()
         ]);

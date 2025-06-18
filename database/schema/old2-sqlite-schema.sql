@@ -64,7 +64,6 @@ CREATE TABLE IF NOT EXISTS "sessions"(
 );
 CREATE INDEX "sessions_user_id_index" on "sessions"("user_id");
 CREATE INDEX "sessions_last_activity_index" on "sessions"("last_activity");
-
 CREATE TABLE IF NOT EXISTS "cache"(
                                       "key" varchar not null,
                                       "value" text not null,
@@ -77,6 +76,7 @@ CREATE TABLE IF NOT EXISTS "cache_locks"(
                                             "expiration" integer not null,
                                             primary key("key")
 );
+
 CREATE TABLE IF NOT EXISTS "jobs"(
                                      "id" integer primary key autoincrement not null,
                                      "queue" varchar not null,
@@ -116,18 +116,14 @@ CREATE TABLE IF NOT EXISTS "appartements"(
   "ascenceur" tinyint(1) not null default '0',
   "balcon" tinyint(1) not null default '0',
   "created_at" datetime,
-  "updated_at" datetime,
-  "property_id" integer not null,
-  foreign key("property_id") references "properties"("id") on delete cascade
+  "updated_at" datetime
 );
 CREATE TABLE IF NOT EXISTS "terrains"(
   "id" integer primary key autoincrement not null,
   "constructible" tinyint(1) not null default '0',
   "zone" varchar check("zone" in('agricole', 'urbaine')) not null,
   "created_at" datetime,
-  "updated_at" datetime,
-  "property_id" integer not null,
-  foreign key("property_id") references "properties"("id") on delete cascade
+  "updated_at" datetime
 );
 CREATE TABLE IF NOT EXISTS "profil_pros"(
   "id" integer primary key autoincrement not null,
@@ -136,19 +132,15 @@ CREATE TABLE IF NOT EXISTS "profil_pros"(
   "cc" varchar not null,
   "abonnement" varchar not null,
   "created_at" datetime,
-  "updated_at" datetime,
-  "user_id" integer not null,
-  foreign key("user_id") references "users"("id")
+  "updated_at" datetime
 );
 CREATE TABLE IF NOT EXISTS "maisons"(
   "id" integer primary key autoincrement not null,
-  "property_id" integer not null,
   "nb_etages" integer not null,
   "jardin" tinyint(1) not null default '0',
   "garage" tinyint(1) not null default '0',
   "created_at" datetime,
-  "updated_at" datetime,
-  foreign key("property_id") references "properties"("id") on delete cascade
+  "updated_at" datetime
 );
 CREATE TABLE IF NOT EXISTS "property_user"(
   "property_id" integer not null,
@@ -158,6 +150,42 @@ CREATE TABLE IF NOT EXISTS "property_user"(
   foreign key("property_id") references "properties"("id") on delete cascade,
   foreign key("user_id") references "users"("id") on delete cascade,
   primary key("property_id", "user_id")
+);
+CREATE TABLE IF NOT EXISTS "profil_pro_user"(
+  "profil_pro_id" integer not null,
+  "user_id" integer not null,
+  "created_at" datetime,
+  "updated_at" datetime,
+  foreign key("profil_pro_id") references "profil_pros"("id") on delete cascade,
+  foreign key("user_id") references "users"("id") on delete cascade,
+  primary key("profil_pro_id", "user_id")
+);
+CREATE TABLE IF NOT EXISTS "property_appartement"(
+  "property_id" integer not null,
+  "appartement_id" integer not null,
+  "created_at" datetime,
+  "updated_at" datetime,
+  foreign key("property_id") references "properties"("id") on delete cascade,
+  foreign key("appartement_id") references "appartements"("id") on delete cascade,
+  primary key("property_id", "appartement_id")
+);
+CREATE TABLE IF NOT EXISTS "property_terrain"(
+  "property_id" integer not null,
+  "terrain_id" integer not null,
+  "created_at" datetime,
+  "updated_at" datetime,
+  foreign key("property_id") references "properties"("id") on delete cascade,
+  foreign key("terrain_id") references "terrains"("id") on delete cascade,
+  primary key("property_id", "terrain_id")
+);
+CREATE TABLE IF NOT EXISTS "property_maison"(
+  "property_id" integer not null,
+  "maison_id" integer not null,
+  "created_at" datetime,
+  "updated_at" datetime,
+  foreign key("property_id") references "properties"("id") on delete cascade,
+  foreign key("maison_id") references "maisons"("id") on delete cascade,
+  primary key("property_id", "maison_id")
 );
 
 INSERT INTO migrations VALUES(1,'2025_05_16_161454_2025_04_14_083521_create_properties_table',1);
@@ -169,3 +197,7 @@ INSERT INTO migrations VALUES(6,'2025_06_09_004528_create_terrains_table',1);
 INSERT INTO migrations VALUES(7,'2025_06_09_161529_create_profil_pros_table',1);
 INSERT INTO migrations VALUES(8,'2025_06_14_204536_create_maisons_table',1);
 INSERT INTO migrations VALUES(9,'2025_06_18_111625_create_property_user_table',1);
+INSERT INTO migrations VALUES(10,'2025_06_18_113817_create_profil_pro_user_table',1);
+INSERT INTO migrations VALUES(11,'2025_06_18_120617_create_property_appartement_table',1);
+INSERT INTO migrations VALUES(12,'2025_06_18_135051_create_property_terrain_table',1);
+INSERT INTO migrations VALUES(13,'2025_06_18_135105_create_property_maison_table',1);

@@ -19,23 +19,19 @@ class AppartementRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
+    public static function rules(): array
     {
         return [
-            'bien_id' => 'bail|exists:bien_immobiliers,id|required',
-            'floor' => 'bail|numeric|min:1|max:100|required',
+            'floor' => 'numeric|min:1|max:100|required',
             'ascenceur' => 'bail|boolean',
-            'balcon' => 'bail|boolean|required'
+            'balcon' => 'bail|boolean',
+            'property_id' => 'bail|exists:properties,id'
         ];
     }
 
     protected function prepareForValidation()
     {
         $this->merge([
-            'bien_id' => $this->input('bien'),
-            'floor' => $this->input('floor'),
-            'ascenceur' => $this->input('ascenceur') ?:false,
-            'balcon' => $this->input('balcon') ?: false,
             'created_at' => $this->input('created_at') ?: time(),
             'updated_at' => $this->input('updated_at') ?: time(),
         ]);

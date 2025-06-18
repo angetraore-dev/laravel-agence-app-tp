@@ -3,7 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
+use JetBrains\PhpStorm\ArrayShape;
 
 class ProfilProRequest extends FormRequest
 {
@@ -18,8 +18,9 @@ class ProfilProRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array
      */
+    #[ArrayShape(['agence' => "string", 'rccm' => "string[]", 'cc' => "string", 'abonnement' => "string", 'user_id' => "string"])]
     public function rules(): array
     {
         return [
@@ -27,20 +28,8 @@ class ProfilProRequest extends FormRequest
             'rccm' => ['required', 'string', 'min:2', 'max:250'],
             'cc' => 'bail|required|string|min:2|max:250',
             'abonnement' => 'bail|required|string|min:4|max:100',
-            'user_id' => 'bail|exists:users,id|required'
+            'user_id' => 'required|exists:users,id'
         ];
     }
 
-    protected function prepareForValidation()
-    {
-        $this->merge([
-            'agence' => $this->input('agence'),
-            'rccm' => $this->input('rccm'),
-            'cc' => $this->input('cc'),
-            'abonnement' => $this->input('abonnement'),
-            'user_id' => $this->input('user') ? Auth::getUser() : $this->getUser(),
-            'created_at' => $this->input('created_at') ?: time(),
-            'updated_at' => $this->input('updated_at') ?: time(),
-        ]);
-    }
 }

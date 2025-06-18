@@ -18,17 +18,17 @@ class UserRequest extends FormRequest
     /**
      * @return array
      */
-    #[ArrayShape(['name' => "string[]", 'email' => "string", 'password' => "string", 'adresse' => "string", 'telephone' => "string", 'type' => "string", 'statut' => "string"])]
     public function rules(): array
     {
         return [
             'name' => ['required', 'string', 'min:4', 'max:30'],
-            'email' => 'bail|required|email|unique',
-            'password' => 'bail|string|min:7|max:100|required',
+            'email' => 'required|email|unique',
+            'password' => 'required|confirmed|min:6',
+            'password_confirmation' => 'required',
             'adresse' => 'bail|required|string|min:5|max:100',
             'telephone' => 'bail|required|string|min:10|max:10',
             'type' => 'bail|required|in:acquereur,particulier,pro',
-            'statut' => 'bail|required|boolean'
+            'status' => 'boolean'
         ];
     }
 
@@ -38,10 +38,11 @@ class UserRequest extends FormRequest
             'name' => $this->input('name'),
             'email' => $this->input('email'),
             'password' => password_hash($this->input('password'), 'bcrypt'),
+            'password_confirmation' => $this->input('password_confirmation'),
             'adresse' => $this->input('adresse'),
             'telephone' => $this->input('telephone'),
             'type' => $this->input('type'),
-            'statut' => $this->input('statut')
+            'status' => $this->input('status')
         ]);
     }
 }

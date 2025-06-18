@@ -4,7 +4,7 @@ namespace App\Enums;
 enum UserType: string {
     case PARTICULIER = 'particulier';
     case PRO = 'pro';
-    case ACQUEREUR= 'acquereur';
+    case ACQUEREUR = 'acquereur';
 
     public function label():string
     {

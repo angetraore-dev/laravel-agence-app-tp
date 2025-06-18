@@ -4,15 +4,22 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Enums\UserType;
+use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use JetBrains\PhpStorm\ArrayShape;
 
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
+    protected static function newFactory(): UserFactory
+    {
+        return UserFactory::new();
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -26,7 +33,7 @@ class User extends Authenticatable
         'adresse',
         'telephone',
         'type',//Particulier, Acquereur or Pro
-        'statut'
+        'status'//true for user verified or false
     ];
 
     /**
@@ -44,6 +51,7 @@ class User extends Authenticatable
      *
      * @return array<string, string>
      */
+    #[ArrayShape(['email_verified_at' => "string", 'password' => "string", 'type' => "string"])]
     protected function casts(): array
     {
         return [
@@ -53,21 +61,17 @@ class User extends Authenticatable
         ];
     }
 
-    /**
-     * @return BelongsTo
-     * One user or not can have one ProfilPro
-     */
-    public function profilPro():BelongsTo
+
+    public function profilPro(): HasOne
     {
-        return $this->belongsTo(ProfilPro::class);
+        return $this->hasOne(ProfilPro::class);
     }
 
     /**
      * @return BelongsToMany
-     * One user can create many bienImmobiliers
      */
-    public function bienImmobiliers():BelongsToMany
+    public function properties():BelongsToMany
     {
-        return $this->belongsToMany(BienImmobilier::class);
+        return $this->belongsToMany(Property::class);
     }
 }

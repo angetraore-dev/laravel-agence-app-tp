@@ -23,16 +23,16 @@ class OptionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'bail|required|min:2|max:100',
+            'name' => 'required|min:2|max:100',
         ];
     }
 
     protected function prepareForValidation()
     {
         $this->merge([
-            'name' => $this->input('name') ? $_POST['name'] : null,
-            //'created_at' => $this->input('created_at') ? $_POST['created_at'] : time(),
-            //'updated_at' => $this->input('updated_at') ? $_POST['updated_at'] : time(),
+            //'name' => $this->input('name'),
+            'created_at' => $this->input('created_at') ? $_POST['created_at'] : time(),
+            'updated_at' => $this->input('updated_at') ? $_POST['updated_at'] : time(),
         ]);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum BienImmobiliersType:string
+enum PropertyType:string
 {
     case MAISON = 'maison';
     case APPARTEMENT = 'appartement';
@@ -13,7 +13,7 @@ enum BienImmobiliersType:string
         return match($this){
             self::MAISON => 'Maison',
             self::APPARTEMENT => 'Appartement',
-            self::TERRAIN => 'Terrain'
+            self::TERRAIN => 'Terrain',
         };
     }
 
@@ -21,5 +21,4 @@ enum BienImmobiliersType:string
     {
         return in_array($this, [self::MAISON, self::APPARTEMENT, self::TERRAIN]);
     }
-
 }

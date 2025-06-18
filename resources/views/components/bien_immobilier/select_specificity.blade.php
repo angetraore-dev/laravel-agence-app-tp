@@ -13,21 +13,21 @@
     <label class="label" for="{{ $name }}">{{ $label }}</label>
 
     @if( !empty($multiple) )
+{{--[]--}}
+        <select name="{{  $name }}" id="{{ $id }}" class="form-control" multiple="multiple">
 
-        <select name="{{$name}}[]" id="{{ $id }}" class="form-control" multiple="multiple">
+            @foreach( $datas as $key => $key_value )
 
-            @foreach( $datas as $v => $k )
-
-                <option class="w-full" value="{{ $v }}"  @selected(  $bien->specificities->contains($v) ) > {{ old($name, $k) }}</option>
+                <option class="w-full" value="{{ $key }}"   @selected(  $bien->specificities->contains($key) ) > {{ $key_value }}</option>
             @endforeach
         </select>
     @else
 
+
         <select name="{{$name}}" id="{{ $id }}" class="form-control">
+            @foreach( $datas as $key =>  $key_value )
 
-            @foreach( $datas as $v1 =>  $k1 )
-
-                <option class="w-full" value="{{ $v1 }}" @selected(  $bien->specificities->contains($v1) ) > {{ old($name, $k1) }}</option>
+                <option class="w-full" value="{{ $key }}" @selected( $bien->specificities->contains($key) ) > {{ $key_value }}</option>
             @endforeach
 
         </select>
