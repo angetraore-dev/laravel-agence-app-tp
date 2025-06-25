@@ -1,5 +1,4 @@
 <?php
-
 use App\Models\Property;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -14,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('maisons', function (Blueprint $table) {
             $table->id();
+            $table->enum('home_type', ['Individuelle', 'Mitoyenne', 'Villa']);
+            $table->integer('habitable_surface');
+            $table->integer('nb_rooms');
+            $table->integer('nb_bedrooms');
+            $table->boolean('jardin')->default(false);
+            $table->boolean('garage')->default(false);
+            $table->timestamps();
             $table->foreignIdFor(Property::class)
                 ->constrained(
                     'properties',
@@ -21,10 +27,6 @@ return new class extends Migration
                     'property_id_fk'
                 )->cascadeOnDelete()
             ;
-            $table->integer('nb_etages');
-            $table->boolean('jardin')->default(false);
-            $table->boolean('garage')->default(false);
-            $table->timestamps();
         });
     }
 

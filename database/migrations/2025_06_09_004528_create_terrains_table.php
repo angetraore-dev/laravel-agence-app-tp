@@ -14,9 +14,12 @@ return new class extends Migration
     {
         Schema::create('terrains', function (Blueprint $table) {
             $table->id();
-            $table->boolean('constructible')->default(false);
-            $table->enum('zone', ['agricole', 'urbaine']);
-            $table->timestamps();
+            $table->enum('zone', ['agricole', 'urbaine', 'forestier']);
+            $table->boolean('viabilise')->default(true);
+            $table->boolean('constructible')->default(true);
+            $table->boolean('zone_protegee')->default(false);
+            $table->boolean('classement_PLU')->default(false);
+            $table->string('pente');
             $table->foreignIdFor(Property::class)
                 ->constrained(
                     'properties',
@@ -24,6 +27,7 @@ return new class extends Migration
                     'property_id_fk'
                 )->cascadeOnDelete()
             ;
+            $table->timestamps();
         });
     }
 

@@ -54,8 +54,8 @@ return new class extends Migration
         Schema::table('profil_pros', function (Blueprint $blueprint){
             $blueprint->dropForeignIdFor(User::class);
         });
-        Schema::table('properties', function (Blueprint $blueprint){
-            $blueprint->dropForeignIdFor(User::class);
-        });
+        //Schema::table('properties', function (Blueprint $blueprint){
+        //            $blueprint->dropForeignIdFor(User::class);
+        //        });
     }
 };
